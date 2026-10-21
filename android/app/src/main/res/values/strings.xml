@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GANAMOS</string>
+    <string name="title_activity_main">GANAMOS</string>
+    <string name="package_name">com.ganamos.app</string>
+    <string name="custom_url_scheme">com.ganamos.app</string>
+</resources>

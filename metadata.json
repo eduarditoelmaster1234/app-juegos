@@ -1,0 +1,6 @@
+{
+  "name": "GANAMOS",
+  "description": "Aplicación móvil oficial de GANAMOS con acceso directo a juegos, chat de soporte y diseño violeta premium.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
