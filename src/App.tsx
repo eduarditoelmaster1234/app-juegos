@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { MobileFrame } from './components/MobileFrame';
 import { LoginScreen } from './components/LoginScreen';
 import { RegisterScreen } from './components/RegisterScreen';
+import { RecoveryScreen } from './components/RecoveryScreen';
 import { HomeScreen } from './components/HomeScreen';
 import { ChatScreen } from './components/ChatScreen';
 import { GameScreen } from './components/GameScreen';
 import { ProfileScreen, UserProfileData } from './components/ProfileScreen';
 import { BottomNav } from './components/BottomNav';
 
-type Screen = 'login' | 'register' | 'home' | 'chat' | 'game' | 'profile';
+type Screen = 'login' | 'register' | 'recovery' | 'home' | 'chat' | 'game' | 'profile';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
@@ -63,6 +64,7 @@ export default function App() {
           <LoginScreen
             onLoginSuccess={handleLoginSuccess}
             onNavigateToRegister={() => setCurrentScreen('register')}
+            onNavigateToRecovery={() => setCurrentScreen('recovery')}
           />
         )}
 
@@ -73,6 +75,13 @@ export default function App() {
             onRegisteredDemo={(newProfile) => {
               setUserProfile(newProfile);
             }}
+          />
+        )}
+
+        {/* Screen 1c: Recuperación de usuario o contraseña */}
+        {currentScreen === 'recovery' && (
+          <RecoveryScreen
+            onNavigateToLogin={() => setCurrentScreen('login')}
           />
         )}
 

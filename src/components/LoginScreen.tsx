@@ -5,11 +5,13 @@ import { GanamosLogo } from './GanamosLogo';
 interface LoginScreenProps {
   onLoginSuccess: (username: string) => void;
   onNavigateToRegister: () => void;
+  onNavigateToRecovery: () => void;
 }
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
   onLoginSuccess,
   onNavigateToRegister,
+  onNavigateToRecovery,
 }) => {
   // Empty by default as requested
   const [username, setUsername] = useState('');
@@ -130,8 +132,19 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             </div>
           </div>
 
+          {/* Forgot credentials link - discrete but visible */}
+          <div className="flex justify-end pt-0.5">
+            <button
+              type="button"
+              onClick={onNavigateToRecovery}
+              className="text-[11px] font-medium text-violet-300/70 hover:text-violet-200 transition-colors py-0.5 cursor-pointer hover:underline underline-offset-4"
+            >
+              ¿Olvidaste tu usuario o contraseña?
+            </button>
+          </div>
+
           {/* Primary Submit Button: INGRESAR */}
-          <div className="pt-2">
+          <div className="pt-1.5">
             <button
               type="submit"
               disabled={isLoading}
