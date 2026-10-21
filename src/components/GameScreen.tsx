@@ -10,7 +10,7 @@ interface GameScreenProps {
 
 export const GameScreen: React.FC<GameScreenProps> = ({
   onBackToHome,
-  gameUrl = 'https://ganamosbet.org/',
+  gameUrl = 'https://ganamosbet.plus/',
   gameTitle = 'GanamosBet',
 }) => {
   const [iframeKey, setIframeKey] = useState(0);

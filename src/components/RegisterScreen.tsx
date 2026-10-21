@@ -41,36 +41,36 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
     e.preventDefault();
 
     if (!formData.firstName.trim()) {
-      setErrorMessage('Por favor ingresá tu nombre');
+      setErrorMessage('Por favor, ingresá tu nombre.');
       return;
     }
     if (!formData.lastName.trim()) {
-      setErrorMessage('Por favor ingresá tu apellido');
+      setErrorMessage('Por favor, ingresá tu apellido.');
       return;
     }
     if (!formData.phone.trim()) {
-      setErrorMessage('Por favor ingresá tu número de teléfono');
+      setErrorMessage('Por favor, ingresá tu número de teléfono.');
       return;
     }
     const phoneDigits = formData.phone.replace(/\D/g, '');
     if (phoneDigits.length < 6) {
-      setErrorMessage('Ingresá un número de teléfono válido (mínimo 6 dígitos)');
+      setErrorMessage('Ingresá un número de teléfono válido (mínimo 6 dígitos).');
       return;
     }
     if (!formData.username.trim()) {
-      setErrorMessage('Por favor elegí un nombre de usuario');
+      setErrorMessage('Por favor, elegí un nombre de usuario.');
       return;
     }
     if (formData.username.trim().length < 3) {
-      setErrorMessage('El usuario debe tener al menos 3 caracteres');
+      setErrorMessage('El usuario debe tener al menos 3 caracteres.');
       return;
     }
     if (!formData.password) {
-      setErrorMessage('Por favor ingresá una contraseña');
+      setErrorMessage('Por favor, ingresá una contraseña.');
       return;
     }
     if (formData.password.length < 6) {
-      setErrorMessage('La contraseña debe tener al menos 6 caracteres');
+      setErrorMessage('La contraseña debe tener al menos 6 caracteres.');
       return;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -120,7 +120,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
         {/* Header */}
         <div className="text-center mb-4">
           <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-            Crear Cuenta
+            Crear cuenta
           </h1>
           <p className="text-xs text-violet-300/60 mt-0.5">
             Completá tus datos para registrarte
@@ -144,7 +144,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
-              <span>Ir a Iniciar Sesión</span>
+              <span>Ir a iniciar sesión</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -325,7 +325,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
 
       {/* Footer */}
       <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
-        GANAMOS © {new Date().getFullYear()} · Registro Oficial
+        GANAMOS © {new Date().getFullYear()} · Registro oficial
       </div>
     </div>
   );

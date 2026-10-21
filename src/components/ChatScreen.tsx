@@ -16,11 +16,11 @@ interface ChatScreenProps {
 
 const EMOJI_CATEGORIES = [
   {
-    name: 'Reacciones & Gestos',
+    name: 'Reacciones y gestos',
     emojis: ['😀', '😂', '😎', '😍', '🥳', '🤩', '🤑', '🤔', '👍', '👏', '🙌', '🔥', '🚀', '💯'],
   },
   {
-    name: 'Casino & Suerte',
+    name: 'Casino y suerte',
     emojis: ['🎰', '🎲', '👑', '💎', '🍀', '🃏', '💰', '💵', '🪙', '🎯', '🏆', '✨', '⭐', '🍾'],
   },
 ];
@@ -44,14 +44,14 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
       defaultMessages.push({
         id: 'msg-topic-cargar',
         sender: 'support',
-        text: '¿Deseas realizar una carga de fichas? Indicanos tu usuario y el medio con el que querés operar.',
+        text: '¿Querés realizar una carga de fichas? Indicanos tu usuario y el medio con el que querés operar.',
         timestamp: '18:31',
       });
     } else if (initialTopic === 'retirar') {
       defaultMessages.push({
         id: 'msg-topic-retirar',
         sender: 'support',
-        text: '¿Deseas solicitar un retiro de fichas? Indicanos tu usuario para coordinar la operación.',
+        text: '¿Querés solicitar un retiro de fichas? Indicanos tu usuario para coordinar la operación.',
         timestamp: '18:31',
       });
     } else {
@@ -153,7 +153,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
       } else if (lower.includes('jugar') || lower.includes('ganamosbet') || lower.includes('entrar')) {
         replyText = 'Podés ingresar al juego directamente pulsando el botón JUGAR en la pantalla principal.';
       } else if (lower.includes('hola') || lower.includes('buenas')) {
-        replyText = `¡Hola ${username}! ¿En qué podemos ayudarte en este momento?`;
+        replyText = `¡Hola, ${username}! ¿En qué podemos ayudarte en este momento?`;
       }
 
       const botMessage: Message = {
@@ -189,7 +189,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         <div className="flex items-center gap-2.5">
           <button
             onClick={onBackToHome}
-            aria-label="Volver a Inicio"
+            aria-label="Volver al inicio"
             className="w-9 h-9 flex items-center justify-center text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -221,7 +221,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         {/* Subtle security notice */}
         <div className="flex justify-center my-0.5">
           <span className="text-[10px] text-violet-300/45 bg-violet-950/30 border border-violet-800/25 px-2.5 py-0.5 rounded-full">
-            Canal de atención oficial GANAMOS
+            Canal de atención oficial de GANAMOS
           </span>
         </div>
 
@@ -258,7 +258,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         {isTyping && (
           <div className="flex items-start">
             <div className="px-3.5 py-2 rounded-2xl rounded-bl-xs bg-[#15082a] border border-violet-500/20 text-violet-300 flex items-center gap-1.5 shadow-sm">
-              <span className="text-xs text-violet-300/70">Escribiendo</span>
+              <span className="text-xs text-violet-300/70">Escribiendo...</span>
               <div className="flex gap-1 items-center ml-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-bounce" style={{ animationDelay: '150ms' }} />

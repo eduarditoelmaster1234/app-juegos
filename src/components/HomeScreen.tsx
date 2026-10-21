@@ -76,7 +76,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Casino roulette / chips photo - Visible & vibrant with purple tone mapping */}
             <img
               src={casinoBanner}
-              alt="Casino Roulette Ganamos"
+              alt="Ruleta de casino GANAMOS"
               referrerPolicy="no-referrer"
               className="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:scale-105 group-hover:opacity-70 transition-all duration-500 pointer-events-none"
             />

@@ -23,7 +23,7 @@ export default function App() {
   const [unreadMessages, setUnreadMessages] = useState(1);
   const [chatTopic, setChatTopic] = useState<'cargar' | 'retirar' | null>(null);
   const [selectedGame, setSelectedGame] = useState<{ url: string; name: string }>({
-    url: 'https://ganamosbet.org/',
+    url: 'https://ganamosbet.plus/',
     name: 'GanamosBet',
   });
   const [previousScreenBeforeGame, setPreviousScreenBeforeGame] = useState<'home' | 'casinos'>('home');
@@ -42,7 +42,7 @@ export default function App() {
   };
 
   const handleOpenPlay = () => {
-    setSelectedGame({ url: 'https://ganamosbet.org/', name: 'GanamosBet' });
+    setSelectedGame({ url: 'https://ganamosbet.plus/', name: 'GanamosBet' });
     setPreviousScreenBeforeGame('home');
     setCurrentScreen('game');
   };

@@ -23,11 +23,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim()) {
-      setErrorMessage('Por favor ingresá tu usuario');
+      setErrorMessage('Por favor, ingresá tu nombre de usuario.');
       return;
     }
     if (!password.trim()) {
-      setErrorMessage('Por favor ingresá tu contraseña');
+      setErrorMessage('Por favor, ingresá tu contraseña.');
       return;
     }
 
@@ -59,7 +59,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         {/* Title & subtitle */}
         <div className="text-center mb-6">
           <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-            Iniciar Sesión
+            Iniciar sesión
           </h1>
           <p className="text-xs text-violet-300/60 mt-1">
             Ingresá tus credenciales para acceder
@@ -179,7 +179,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
       {/* Clean footer */}
       <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
-        GANAMOS © {new Date().getFullYear()} · Acceso Oficial
+        GANAMOS © {new Date().getFullYear()} · Acceso oficial
       </div>
     </div>
   );

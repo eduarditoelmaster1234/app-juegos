@@ -20,11 +20,11 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
     e.preventDefault();
     const phoneDigits = phone.replace(/\D/g, '');
     if (!phone.trim()) {
-      setErrorMessage('Por favor ingresá tu número de teléfono registrado');
+      setErrorMessage('Por favor, ingresá tu número de teléfono registrado.');
       return;
     }
     if (phoneDigits.length < 6) {
-      setErrorMessage('Ingresá un número de teléfono válido (mínimo 6 dígitos)');
+      setErrorMessage('Ingresá un número de teléfono válido (mínimo 6 dígitos).');
       return;
     }
 
@@ -41,7 +41,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
   const handleRecoverPassword = (e: React.FormEvent) => {
     e.preventDefault();
     if (!identifier.trim()) {
-      setErrorMessage('Por favor ingresá tu usuario o número de teléfono registrado');
+      setErrorMessage('Por favor, ingresá tu usuario o número de teléfono registrado.');
       return;
     }
 
@@ -276,7 +276,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
-              <span>Volver a Iniciar Sesión</span>
+              <span>Volver a iniciar sesión</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -307,7 +307,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
-              <span>Volver a Iniciar Sesión</span>
+              <span>Volver a iniciar sesión</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -332,7 +332,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
 
       {/* Footer */}
       <footer className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
-        GANAMOS © {new Date().getFullYear()} · Recuperación de Cuenta
+        GANAMOS © {new Date().getFullYear()} · Recuperación de cuenta
       </footer>
     </div>
   );

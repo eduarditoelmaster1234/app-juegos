@@ -58,10 +58,10 @@ export const CasinosScreen: React.FC<CasinosScreenProps> = ({ onSelectPlatform }
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              Plataformas de Juego
+              Plataformas de juego
             </h1>
             <p className="text-[11px] text-violet-300/60">
-              Elegí tu plataforma y accedé al instante
+              Elegí tu plataforma y accedé al instante.
             </p>
           </div>
         </div>

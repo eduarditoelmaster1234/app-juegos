@@ -40,7 +40,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({ children }) => {
       {/* Viewport Mode Toggle for Desktop preview */}
       <div className="hidden lg:flex fixed top-4 right-5 z-50 items-center gap-2 px-3 py-1.5 rounded-full bg-[#120524]/85 border border-violet-500/20 backdrop-blur-md shadow-md text-xs font-semibold text-violet-200">
         <Smartphone className="w-3.5 h-3.5 text-violet-400" />
-        <span>{isExpanded ? 'Modo Expandido' : 'Modo Móvil'}</span>
+        <span>{isExpanded ? 'Modo expandido' : 'Modo móvil'}</span>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="ml-1 p-0.5 hover:text-white transition-colors cursor-pointer"

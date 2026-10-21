@@ -12,9 +12,9 @@ export const CASINO_PLATFORMS: CasinoPlatform[] = [
   {
     id: 'ganamosbet',
     name: 'GanamosBet',
-    url: 'https://ganamosbet.org/',
+    url: 'https://ganamosbet.plus/',
     shortTag: 'GB',
-    domain: 'ganamosbet.org',
+    domain: 'ganamosbet.plus',
     themeColor: 'from-violet-600 to-purple-800',
     accentIcon: 'crown',
   },

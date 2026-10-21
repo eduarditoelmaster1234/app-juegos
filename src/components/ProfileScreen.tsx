@@ -36,14 +36,14 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         <button
           onClick={onBackToHome}
           className="flex items-center gap-1.5 p-1.5 -ml-1 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 transition-colors cursor-pointer"
-          aria-label="Volver al Inicio"
+          aria-label="Volver al inicio"
         >
           <ArrowLeft className="w-4 h-4" />
           <span className="text-xs font-semibold">Inicio</span>
         </button>
 
         <h1 className="text-xs font-bold text-white tracking-wider uppercase">
-          Mi Perfil
+          Mi perfil
         </h1>
 
         <GanamosLogo size="sm" showSubtitle={false} />
@@ -160,7 +160,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
       {/* Footer */}
       <footer className="relative z-10 text-center py-1.5 text-[10px] text-violet-400/35">
-        GANAMOS · Cuenta Oficial
+        GANAMOS · Cuenta oficial
       </footer>
     </div>
   );
