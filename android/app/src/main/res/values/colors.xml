@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gb_background">#05010A</color>
+    <color name="gb_surface">#0C041C</color>
+    <color name="gb_border">#2A0B4D</color>
+    <color name="gb_text">#F5F3FF</color>
+    <color name="gb_text_muted">#C4B5FD</color>
+    <color name="gb_accent">#8B5CF6</color>
+</resources>

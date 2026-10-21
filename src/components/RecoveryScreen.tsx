@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, User, Phone, KeyRound, CheckCircle2, ShieldAlert, ArrowRight, UserCheck } from 'lucide-react';
 import { GanamosLogo } from './GanamosLogo';
+import { useSafeTimeout } from '../hooks/useSafeTimeout';
 
 interface RecoveryScreenProps {
   onNavigateToLogin: () => void;
@@ -14,6 +15,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
   const [identifier, setIdentifier] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const scheduleTimeout = useSafeTimeout();
 
   // Submit for recovering username
   const handleRecoverUsername = (e: React.FormEvent) => {
@@ -31,7 +33,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
     setErrorMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    scheduleTimeout(() => {
       setIsLoading(false);
       setStep('username_success');
     }, 400);
@@ -48,7 +50,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
     setErrorMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    scheduleTimeout(() => {
       setIsLoading(false);
       setStep('password_success');
     }, 400);

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Headphones, ShieldCheck, CheckCheck, Smile, X } from 'lucide-react';
+import { useSafeTimeout } from '../hooks/useSafeTimeout';
 
 interface Message {
   id: string;
@@ -71,6 +72,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
 
+  const scheduleTimeout = useSafeTimeout();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -137,7 +139,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
     setShowEmojiPicker(false);
     setIsTyping(true);
 
-    setTimeout(() => {
+    scheduleTimeout(() => {
       setIsTyping(false);
       let replyText = 'Gracias por comunicarte. Un asesor de GANAMOS te responderá en breve.';
       const lower = text.toLowerCase();
@@ -296,6 +298,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
               onClick={() => setShowEmojiPicker(false)}
               className="p-1 text-violet-400 hover:text-white rounded-lg transition-colors cursor-pointer"
               title="Cerrar"
+              aria-label="Cerrar selector de emojis"
             >
               <X className="w-4 h-4" />
             </button>
@@ -347,6 +350,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                 : 'bg-[#15082a] text-violet-300/80 hover:text-white hover:bg-violet-950 border-violet-500/20'
             }`}
             title="Insertar emoji"
+            aria-label="Insertar emoji"
           >
             <Smile className="w-5 h-5" />
           </button>

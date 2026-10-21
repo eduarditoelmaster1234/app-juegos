@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Sparkles, Zap, Crown, Dices, Trophy, Shield, Gem, Search } from 'lucide-react';
+import { Play, Sparkles, Zap, Crown, Dices, Trophy, Shield, Gem, Search } from 'lucide-react';
 import { GanamosLogo } from './GanamosLogo';
 import { CASINO_PLATFORMS, CasinoPlatform } from '../data/casinos';
 
@@ -135,7 +135,7 @@ export const CasinosScreen: React.FC<CasinosScreenProps> = ({ onSelectPlatform }
                   }`}
                 >
                   <span>Ingresar</span>
-                  <ExternalLink className="w-3 h-3 text-violet-300" />
+                  <Play className="w-3 h-3 text-violet-300 fill-current" />
                 </button>
               </div>
             </div>

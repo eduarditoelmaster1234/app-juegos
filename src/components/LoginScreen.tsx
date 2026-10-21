@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { GanamosLogo } from './GanamosLogo';
+import { useSafeTimeout } from '../hooks/useSafeTimeout';
 
 interface LoginScreenProps {
   onLoginSuccess: (username: string) => void;
@@ -18,6 +19,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const scheduleTimeout = useSafeTimeout();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     setErrorMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    scheduleTimeout(() => {
       setIsLoading(false);
       onLoginSuccess(username.trim());
     }, 300);
@@ -119,8 +121,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
+                className="absolute right-1.5 w-9 h-9 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
                 title={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
               >
                 {showPassword ? (
                   <EyeOff className="w-4 h-4" />

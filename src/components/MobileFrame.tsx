@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { Wifi, Battery, Smartphone, Maximize2, Minimize2 } from 'lucide-react';
 
 interface MobileFrameProps {
@@ -8,8 +9,14 @@ interface MobileFrameProps {
 export const MobileFrame: React.FC<MobileFrameProps> = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentTime, setCurrentTime] = useState('18:45');
+  // En la app nativa el celular ya muestra su propia barra de estado,
+  // así que ocultamos la simulada para no duplicar hora y batería.
+  const isNative = Capacitor.isNativePlatform();
+  const showStatusBar = !isExpanded && !isNative;
 
   useEffect(() => {
+    if (!showStatusBar) return;
+
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(
@@ -19,7 +26,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({ children }) => {
     updateTime();
     const interval = setInterval(updateTime, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [showStatusBar]);
 
   return (
     <div className="relative min-h-screen w-full bg-[#05010a] flex flex-col items-center justify-center overflow-x-hidden selection:bg-violet-600 selection:text-white">
@@ -60,10 +67,10 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({ children }) => {
           isExpanded
             ? 'h-screen max-w-none'
             : 'h-screen sm:h-[844px] sm:max-w-[390px] sm:my-auto sm:rounded-[40px] sm:border-[6px] sm:border-[#16082c] sm:shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_0_1px_rgba(139,92,246,0.18)]'
-        } overflow-hidden bg-[#06010d]`}
+        } ${isNative ? 'native-safe-area' : ''} overflow-hidden bg-[#06010d]`}
       >
-        {/* Status Bar */}
-        {!isExpanded && (
+        {/* Status Bar (solo en la vista web de escritorio) */}
+        {showStatusBar && (
           <div className="shrink-0 h-10 px-5 flex items-center justify-between text-xs text-violet-200/75 bg-[#0a0316] select-none z-30 border-b border-violet-950/50">
             <span className="font-semibold tracking-tight text-[12px] tabular-nums">
               {currentTime}
@@ -84,8 +91,8 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({ children }) => {
           {children}
         </div>
 
-        {/* Home Indicator bar */}
-        {!isExpanded && (
+        {/* Home Indicator bar (solo en la vista web; Android ya muestra la suya) */}
+        {!isExpanded && !isNative && (
           <div className="shrink-0 h-3.5 bg-[#06010d] flex items-center justify-center pb-0.5">
             <div className="w-28 h-1 bg-violet-400/25 rounded-full" />
           </div>

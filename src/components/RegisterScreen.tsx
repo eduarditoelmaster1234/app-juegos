@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User, Lock, Phone, Eye, EyeOff, ArrowRight, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { GanamosLogo } from './GanamosLogo';
+import { useSafeTimeout } from '../hooks/useSafeTimeout';
 
 interface RegisterScreenProps {
   onNavigateToLogin: () => void;
@@ -30,6 +31,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [validationSuccess, setValidationSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const scheduleTimeout = useSafeTimeout();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -81,7 +83,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
     setErrorMessage('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    scheduleTimeout(() => {
       setIsLoading(false);
       setValidationSuccess(true);
       if (onRegisteredDemo) {
@@ -255,7 +257,8 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
+                  className="absolute right-1.5 w-9 h-9 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
+                  aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
                   {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
@@ -283,7 +286,8 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
+                  className="absolute right-1.5 w-9 h-9 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
+                  aria-label={showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
                   {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>

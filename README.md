@@ -47,14 +47,16 @@ npm run android:open
 - `capacitor.config.ts`: configuración de Capacitor (nombre, ID y carpeta web).
 - `android/`: proyecto Android generado.
 - `scripts/build-android.sh`: script de compilación + instalación.
+- `scripts/generate-icons.mjs`: regenera los iconos del launcher (`npm run icons`).
 
 ## Notas
 
 - La app es 100% cliente: no necesita servidor para funcionar.
+- En la app nativa se oculta la barra de estado simulada (hora, wifi y batería)
+  para no duplicar la barra real del celular.
+- El icono del launcher y el splash screen usan el emblema de la corona de
+  GANAMOS con el degradado violeta de la marca.
 - La pantalla de juego carga el sitio en un `iframe`. Si el sitio bloquea la
   incrustación por cabeceras de seguridad, usá el botón **Abrir directo**.
-- `MobileFrame` dibuja una barra de estado simulada (hora, wifi, batería). En el
-  celular real eso hace que la barra se vea duplicada; se puede ocultar en la
-  versión nativa si se desea.
 - Para publicar en Play Store hace falta generar un APK/AAB firmado con tu
   propio keystore.

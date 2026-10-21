@@ -1,7 +1,7 @@
 import React from 'react';
 import { Play, LogOut, ChevronRight, Coins, Wallet } from 'lucide-react';
 import { GanamosLogo } from './GanamosLogo';
-import casinoBanner from '../assets/images/casino_roulette_banner_1792544270379.jpg';
+import casinoBanner from '../assets/images/casino_roulette_banner.webp';
 
 interface HomeScreenProps {
   username: string;
@@ -47,6 +47,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             type="button"
             onClick={onLogout}
             title="Cerrar sesión"
+            aria-label="Cerrar sesión"
             className="w-9 h-9 rounded-full flex items-center justify-center text-violet-400/60 hover:text-violet-200 hover:bg-violet-900/25 transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
@@ -81,6 +82,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               src={casinoBanner}
               alt="Ruleta de casino GANAMOS"
               referrerPolicy="no-referrer"
+              decoding="async"
+              draggable={false}
               className="absolute inset-0 w-full h-full object-cover object-center opacity-60 group-hover:scale-105 group-hover:opacity-70 transition-all duration-500 pointer-events-none"
             />
 
