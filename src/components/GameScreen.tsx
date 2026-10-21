@@ -4,19 +4,34 @@ import { GanamosLogo } from './GanamosLogo';
 
 interface GameScreenProps {
   onBackToHome: () => void;
+  gameUrl?: string;
+  gameTitle?: string;
 }
 
-export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
+export const GameScreen: React.FC<GameScreenProps> = ({
+  onBackToHome,
+  gameUrl = 'https://ganamosbet.org/',
+  gameTitle = 'GanamosBet',
+}) => {
   const [iframeKey, setIframeKey] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showHelperBanner, setShowHelperBanner] = useState(true);
-
-  const GAME_URL = 'https://ganamosbet.org/';
 
   const handleReload = () => {
     setIsLoading(true);
     setIframeKey((prev) => prev + 1);
   };
+
+  // Extract clean domain for display
+  const getDomain = (url: string) => {
+    try {
+      return new URL(url).hostname;
+    } catch {
+      return url;
+    }
+  };
+
+  const domain = getDomain(gameUrl);
 
   return (
     <div className="relative flex flex-col h-full w-full bg-[#05010a] overflow-hidden select-none">
@@ -28,12 +43,15 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
           className="flex items-center gap-1.5 py-1.5 px-3 rounded-xl bg-violet-950/50 hover:bg-violet-900/50 active:bg-violet-800 text-violet-200 hover:text-white border border-violet-500/20 text-xs font-bold transition-all cursor-pointer min-h-[38px]"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Volver al Inicio</span>
+          <span>Volver</span>
         </button>
 
-        {/* Center Logo */}
-        <div className="flex items-center gap-1.5">
+        {/* Center Title / Logo */}
+        <div className="flex items-center gap-1.5 truncate max-w-[150px] sm:max-w-[180px]">
           <GanamosLogo size="sm" showSubtitle={false} />
+          <span className="text-xs font-bold text-violet-200 truncate hidden sm:inline">
+            · {gameTitle}
+          </span>
         </div>
 
         {/* Action Controls */}
@@ -47,10 +65,10 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
           </button>
 
           <a
-            href={GAME_URL}
+            href={gameUrl}
             target="_blank"
             rel="noopener noreferrer"
-            title="Abrir en ventana externa"
+            title={`Abrir ${gameTitle} en ventana externa`}
             className="p-2 rounded-xl text-violet-300 hover:text-white hover:bg-violet-900/30 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
           >
             <ExternalLink className="w-3.5 h-3.5" />
@@ -64,12 +82,12 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
           <div className="flex items-center gap-2 truncate">
             <ShieldCheck className="w-3.5 h-3.5 text-violet-400 shrink-0" />
             <span className="truncate">
-              Conexión directa con ganamosbet.org
+              {gameTitle} — {domain}
             </span>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <a
-              href={GAME_URL}
+              href={gameUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold underline text-violet-300 hover:text-white"
@@ -95,12 +113,12 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
               <div className="w-12 h-12 rounded-full border-3 border-violet-900/40 border-t-violet-400 animate-spin" />
               <div className="absolute w-6 h-6 rounded-full bg-violet-600/20 blur-xs" />
             </div>
-            <div className="text-center space-y-0.5">
+            <div className="text-center space-y-0.5 px-4">
               <p className="text-xs font-bold text-white tracking-wide">
-                Cargando GANAMOS...
+                Cargando {gameTitle}...
               </p>
-              <p className="text-[11px] text-violet-400/60">
-                Estableciendo conexión segura
+              <p className="text-[11px] text-violet-400/60 font-mono">
+                {domain}
               </p>
             </div>
           </div>
@@ -109,8 +127,8 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
         {/* The Game Iframe */}
         <iframe
           key={iframeKey}
-          src={GAME_URL}
-          title="GanamosBet Juego"
+          src={gameUrl}
+          title={`${gameTitle} Plataforma`}
           onLoad={() => setIsLoading(false)}
           allow="fullscreen; autoplay; clipboard-write; encrypted-media"
           className="w-full h-full border-0 bg-transparent"
@@ -120,12 +138,12 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBackToHome }) => {
         <div className="absolute bottom-3 inset-x-3 z-10 p-2.5 rounded-xl bg-[#120524]/95 backdrop-blur-md border border-violet-500/20 shadow-lg flex items-center justify-between pointer-events-auto">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-3.5 h-3.5 text-violet-400 shrink-0" />
-            <div className="text-[10px] text-violet-200/80 leading-tight">
-              ¿No podés visualizar el juego dentro del navegador?
+            <div className="text-[10px] text-violet-200/80 leading-tight truncate">
+              ¿No se visualiza {gameTitle} en el navegador?
             </div>
           </div>
           <a
-            href={GAME_URL}
+            href={gameUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="py-1 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-[10px] font-bold tracking-wide transition-colors shrink-0"

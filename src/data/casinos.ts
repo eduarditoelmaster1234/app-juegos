@@ -1,0 +1,138 @@
+export interface CasinoPlatform {
+  id: string;
+  name: string;
+  url: string;
+  shortTag: string;
+  domain: string;
+  themeColor: string;
+  accentIcon: 'crown' | 'lightning' | 'dice' | 'trophy' | 'flame' | 'sparkles' | 'diamond' | 'shield';
+}
+
+export const CASINO_PLATFORMS: CasinoPlatform[] = [
+  {
+    id: 'ganamosbet',
+    name: 'GanamosBet',
+    url: 'https://ganamosbet.org/',
+    shortTag: 'GB',
+    domain: 'ganamosbet.org',
+    themeColor: 'from-violet-600 to-purple-800',
+    accentIcon: 'crown',
+  },
+  {
+    id: 'casino-zeus',
+    name: 'Casino Zeus',
+    url: 'https://casinozeus1.plus/',
+    shortTag: 'ZEUS',
+    domain: 'casinozeus1.plus',
+    themeColor: 'from-purple-600 to-indigo-800',
+    accentIcon: 'lightning',
+  },
+  {
+    id: 'bet30',
+    name: 'Bet30',
+    url: 'https://bet30e.lat/',
+    shortTag: 'B30',
+    domain: 'bet30e.lat',
+    themeColor: 'from-violet-700 to-slate-900',
+    accentIcon: 'flame',
+  },
+  {
+    id: 'gana-en-casa',
+    name: 'Gana en Casa Bet',
+    url: 'https://ganaencasabet.lat/',
+    shortTag: 'GCB',
+    domain: 'ganaencasabet.lat',
+    themeColor: 'from-indigo-600 to-violet-900',
+    accentIcon: 'dice',
+  },
+  {
+    id: 'jugamos',
+    name: 'Jugamos',
+    url: 'https://jugamos1.lat/',
+    shortTag: 'JUG',
+    domain: 'jugamos1.lat',
+    themeColor: 'from-purple-700 to-violet-950',
+    accentIcon: 'sparkles',
+  },
+  {
+    id: 'celuapuestas',
+    name: 'CeluApuestas',
+    url: 'https://celuapuestas1.lat/',
+    shortTag: 'CELU',
+    domain: 'celuapuestas1.lat',
+    themeColor: 'from-violet-600 to-fuchsia-900',
+    accentIcon: 'trophy',
+  },
+  {
+    id: 'casino-zeta',
+    name: 'Casino Zeta',
+    url: 'https://casinozeta1.lat/',
+    shortTag: 'ZETA',
+    domain: 'casinozeta1.lat',
+    themeColor: 'from-purple-600 to-indigo-950',
+    accentIcon: 'diamond',
+  },
+  {
+    id: 'oro-puro',
+    name: 'Oro Puro',
+    url: 'https://oropuro.bet/',
+    shortTag: 'ORO',
+    domain: 'oropuro.bet',
+    themeColor: 'from-amber-600/80 to-purple-950',
+    accentIcon: 'crown',
+  },
+  {
+    id: 'fortubet',
+    name: 'FortuBet',
+    url: 'https://fortubet.cc/',
+    shortTag: 'FORT',
+    domain: 'fortubet.cc',
+    themeColor: 'from-violet-600 to-purple-900',
+    accentIcon: 'shield',
+  },
+  {
+    id: 'gran-poseidon',
+    name: 'Gran Poseidón',
+    url: 'https://granposeidon.plus/',
+    shortTag: 'POS',
+    domain: 'granposeidon.plus',
+    themeColor: 'from-cyan-700/80 to-violet-950',
+    accentIcon: 'lightning',
+  },
+  {
+    id: 'mega-faraon',
+    name: 'Mega Faraón',
+    url: 'https://megafaraon.plus/',
+    shortTag: 'FARA',
+    domain: 'megafaraon.plus',
+    themeColor: 'from-amber-700/70 to-purple-950',
+    accentIcon: 'crown',
+  },
+  {
+    id: 'konabet',
+    name: 'KonaBet',
+    url: 'https://konabet.plus/',
+    shortTag: 'KONA',
+    domain: 'konabet.plus',
+    themeColor: 'from-purple-600 to-violet-900',
+    accentIcon: 'dice',
+  },
+  {
+    id: 'camelbet',
+    name: 'CamelBet',
+    url: 'https://camelbet.icu/',
+    shortTag: 'CAM',
+    domain: 'camelbet.icu',
+    themeColor: 'from-violet-700 to-indigo-900',
+    accentIcon: 'sparkles',
+  },
+  {
+    id: 'rhinoplay',
+    name: 'RhinoPlay',
+    url: 'https://rhinoplay.xyz/',
+    shortTag: 'RHINO',
+    domain: 'rhinoplay.xyz',
+    themeColor: 'from-violet-600 to-slate-900',
+    accentIcon: 'shield',
+  },
+];

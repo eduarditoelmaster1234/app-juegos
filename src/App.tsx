@@ -4,12 +4,13 @@ import { LoginScreen } from './components/LoginScreen';
 import { RegisterScreen } from './components/RegisterScreen';
 import { RecoveryScreen } from './components/RecoveryScreen';
 import { HomeScreen } from './components/HomeScreen';
+import { CasinosScreen } from './components/CasinosScreen';
 import { ChatScreen } from './components/ChatScreen';
 import { GameScreen } from './components/GameScreen';
 import { ProfileScreen, UserProfileData } from './components/ProfileScreen';
-import { BottomNav } from './components/BottomNav';
+import { BottomNav, NavTab } from './components/BottomNav';
 
-type Screen = 'login' | 'register' | 'recovery' | 'home' | 'chat' | 'game' | 'profile';
+type Screen = 'login' | 'register' | 'recovery' | 'home' | 'casinos' | 'chat' | 'game' | 'profile';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
@@ -21,6 +22,11 @@ export default function App() {
   });
   const [unreadMessages, setUnreadMessages] = useState(1);
   const [chatTopic, setChatTopic] = useState<'cargar' | 'retirar' | null>(null);
+  const [selectedGame, setSelectedGame] = useState<{ url: string; name: string }>({
+    url: 'https://ganamosbet.org/',
+    name: 'GanamosBet',
+  });
+  const [previousScreenBeforeGame, setPreviousScreenBeforeGame] = useState<'home' | 'casinos'>('home');
 
   const handleLoginSuccess = (user: string) => {
     setUserProfile((prev) => ({
@@ -36,6 +42,14 @@ export default function App() {
   };
 
   const handleOpenPlay = () => {
+    setSelectedGame({ url: 'https://ganamosbet.org/', name: 'GanamosBet' });
+    setPreviousScreenBeforeGame('home');
+    setCurrentScreen('game');
+  };
+
+  const handleSelectPlatform = (url: string, name: string) => {
+    setSelectedGame({ url, name });
+    setPreviousScreenBeforeGame('casinos');
     setCurrentScreen('game');
   };
 
@@ -51,6 +65,18 @@ export default function App() {
 
   const handleBackToHome = () => {
     setCurrentScreen('home');
+  };
+
+  const handleBackFromGame = () => {
+    setCurrentScreen(previousScreenBeforeGame);
+  };
+
+  const handleBottomNav = (tab: NavTab) => {
+    if (tab === 'chat') {
+      handleOpenChat();
+    } else {
+      setCurrentScreen(tab);
+    }
   };
 
   return (
@@ -99,9 +125,21 @@ export default function App() {
             </div>
             <BottomNav
               currentScreen="home"
-              onNavigate={(screen) => {
-                if (screen === 'chat') handleOpenChat();
-              }}
+              onNavigate={handleBottomNav}
+              unreadCount={unreadMessages}
+            />
+          </div>
+        )}
+
+        {/* Screen 2b: Casinos */}
+        {currentScreen === 'casinos' && (
+          <div className="flex flex-col h-full w-full">
+            <div className="flex-1 overflow-hidden">
+              <CasinosScreen onSelectPlatform={handleSelectPlatform} />
+            </div>
+            <BottomNav
+              currentScreen="casinos"
+              onNavigate={handleBottomNav}
               unreadCount={unreadMessages}
             />
           </div>
@@ -119,17 +157,19 @@ export default function App() {
             </div>
             <BottomNav
               currentScreen="chat"
-              onNavigate={(screen) => {
-                if (screen === 'home') handleBackToHome();
-              }}
+              onNavigate={handleBottomNav}
               unreadCount={0}
             />
           </div>
         )}
 
-        {/* Screen 4: Juego */}
+        {/* Screen 4: Juego / Plataforma Seleccionada */}
         {currentScreen === 'game' && (
-          <GameScreen onBackToHome={handleBackToHome} />
+          <GameScreen
+            onBackToHome={handleBackFromGame}
+            gameUrl={selectedGame.url}
+            gameTitle={selectedGame.name}
+          />
         )}
 
         {/* Screen 5: Perfil de Usuario */}
@@ -144,10 +184,7 @@ export default function App() {
             </div>
             <BottomNav
               currentScreen="home"
-              onNavigate={(screen) => {
-                if (screen === 'chat') handleOpenChat();
-                else handleBackToHome();
-              }}
+              onNavigate={handleBottomNav}
               unreadCount={unreadMessages}
             />
           </div>
