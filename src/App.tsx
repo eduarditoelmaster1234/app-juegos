@@ -54,7 +54,10 @@ export default function App() {
 
   return (
     <MobileFrame>
-      <div className="relative flex flex-col h-full w-full overflow-hidden">
+      <div
+        key={currentScreen}
+        className="animate-screen-fade relative flex flex-col h-full w-full overflow-hidden"
+      >
         {/* Screen 1: Login */}
         {currentScreen === 'login' && (
           <LoginScreen

@@ -40,7 +40,6 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Mandatory field checks
     if (!formData.firstName.trim()) {
       setErrorMessage('Por favor ingresá tu nombre');
       return;
@@ -53,7 +52,6 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       setErrorMessage('Por favor ingresá tu número de teléfono');
       return;
     }
-    // Clean phone validation (at least 6 digits)
     const phoneDigits = formData.phone.replace(/\D/g, '');
     if (phoneDigits.length < 6) {
       setErrorMessage('Ingresá un número de teléfono válido (mínimo 6 dígitos)');
@@ -83,7 +81,6 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
     setErrorMessage('');
     setIsLoading(true);
 
-    // Visual validation completion: ready for backend hookup
     setTimeout(() => {
       setIsLoading(false);
       setValidationSuccess(true);
@@ -95,74 +92,74 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           username: formData.username.trim(),
         });
       }
-    }, 400);
+    }, 350);
   };
 
   return (
-    <div className="relative flex flex-col justify-between min-h-full w-full px-6 py-6 overflow-y-auto bg-gradient-to-b from-[#0e0422] via-[#090217] to-[#05010d]">
-      {/* Subtle ambient lighting */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-violet-600/15 rounded-full blur-[90px] pointer-events-none" />
+    <div className="relative flex flex-col justify-between min-h-full w-full px-5 py-5 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
+      {/* Subtle controlled ambient lighting */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Top bar with back button */}
-      <div className="relative z-10 flex items-center justify-between w-full pt-2 mb-3">
+      {/* Top bar with back navigation */}
+      <div className="relative z-10 flex items-center justify-between w-full pt-1 pb-2">
         <button
           onClick={onNavigateToLogin}
-          className="p-2 -ml-2 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/30 transition-colors cursor-pointer"
+          className="p-2 -ml-2 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 transition-colors cursor-pointer"
           aria-label="Volver al inicio de sesión"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-4 h-4" />
         </button>
 
         <GanamosLogo size="sm" showSubtitle={false} />
 
-        <div className="w-8" />
+        <div className="w-6" />
       </div>
 
-      {/* Main form container */}
-      <div className="relative z-10 w-full max-w-sm mx-auto my-auto flex flex-col">
+      {/* Form Container */}
+      <div className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col">
         {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-xl font-bold text-white tracking-tight">
+        <div className="text-center mb-4">
+          <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
             Crear Cuenta
           </h1>
-          <p className="text-xs text-violet-300/70 mt-1">
-            Completá tus datos para registrarte en GANAMOS
+          <p className="text-xs text-violet-300/60 mt-0.5">
+            Completá tus datos para registrarte
           </p>
         </div>
 
         {validationSuccess ? (
-          <div className="p-6 rounded-2xl bg-[#170a30] border border-violet-500/30 text-center space-y-4 shadow-xl">
-            <div className="w-14 h-14 rounded-full bg-violet-600/20 border border-violet-400/40 text-violet-300 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8 text-violet-400" />
+          <div className="p-5 rounded-2xl bg-[#140827] border border-violet-500/25 text-center space-y-3.5 shadow-lg">
+            <div className="w-12 h-12 rounded-full bg-violet-600/20 border border-violet-400/30 text-violet-300 mx-auto flex items-center justify-center">
+              <CheckCircle2 className="w-7 h-7 text-violet-400" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">
+              <h2 className="text-sm font-bold text-white">
                 Datos validados correctamente
               </h2>
-              <p className="text-xs text-violet-300/70 mt-2 leading-relaxed">
-                El formulario quedó listo y validado para su conexión con el backend.
+              <p className="text-xs text-violet-300/60 mt-1 leading-relaxed">
+                El formulario quedó listo para la conexión con el servidor.
               </p>
             </div>
             <button
               onClick={onNavigateToLogin}
-              className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-violet-600/30 cursor-pointer transition-transform active:scale-[0.98]"
+              className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
               <span>Ir a Iniciar Sesión</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form onSubmit={handleSubmit} className="space-y-2.5">
             {errorMessage && (
-              <div className="p-3 rounded-xl bg-red-950/50 border border-red-500/30 text-red-200 text-xs text-center font-medium">
+              <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium">
                 {errorMessage}
               </div>
             )}
 
-            {/* Nombre y Apellido (2 columns) */}
-            <div className="grid grid-cols-2 gap-2.5">
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+            {/* Nombre y Apellido (2 columns for compact vertical rhythm) */}
+            <div className="grid grid-cols-2 gap-2">
+              <div className="space-y-0.5">
+                <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                   Nombre *
                 </label>
                 <input
@@ -172,12 +169,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Tu nombre"
                   autoComplete="given-name"
-                  className="w-full h-11 px-3 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+              <div className="space-y-0.5">
+                <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                   Apellido *
                 </label>
                 <input
@@ -187,19 +184,19 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Tu apellido"
                   autoComplete="family-name"
-                  className="w-full h-11 px-3 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
-            {/* Número de Teléfono */}
-            <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+            {/* Teléfono */}
+            <div className="space-y-0.5">
+              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                 Número de teléfono *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/70 pointer-events-none">
-                  <Phone className="w-4 h-4" />
+                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                  <Phone className="w-3.5 h-3.5" />
                 </div>
                 <input
                   type="tel"
@@ -207,42 +204,42 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   inputMode="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Ej: +54 9 11 2345-6789"
+                  placeholder="+54 9 11 2345-6789"
                   autoComplete="tel"
-                  className="w-full h-11 pl-10 pr-3 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 pl-9 pr-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Usuario */}
-            <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-0.5">
+              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                 Usuario *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/70 pointer-events-none">
-                  <User className="w-4 h-4" />
+                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                  <User className="w-3.5 h-3.5" />
                 </div>
                 <input
                   type="text"
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  placeholder="Elegí tu nombre de usuario"
+                  placeholder="Elegí tu usuario"
                   autoComplete="username"
-                  className="w-full h-11 pl-10 pr-3 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 pl-9 pr-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Contraseña */}
-            <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-0.5">
+              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                 Contraseña *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/70 pointer-events-none">
-                  <Lock className="w-4 h-4" />
+                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                  <Lock className="w-3.5 h-3.5" />
                 </div>
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -251,26 +248,26 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Mínimo 6 caracteres"
                   autoComplete="new-password"
-                  className="w-full h-11 pl-10 pr-10 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 pl-9 pr-9 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 text-violet-400/70 hover:text-violet-200 p-1 cursor-pointer transition-colors"
+                  className="absolute right-2.5 text-violet-400/60 hover:text-violet-200 p-1 cursor-pointer transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
               </div>
             </div>
 
-            {/* Confirmación de contraseña */}
-            <div className="space-y-1">
-              <label className="text-[11px] font-semibold text-violet-200/80 pl-1 block">
+            {/* Confirmar contraseña */}
+            <div className="space-y-0.5">
+              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
                 Confirmar contraseña *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/70 pointer-events-none">
-                  <Lock className="w-4 h-4" />
+                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                  <Lock className="w-3.5 h-3.5" />
                 </div>
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
@@ -279,14 +276,14 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Repetí la contraseña"
                   autoComplete="new-password"
-                  className="w-full h-11 pl-10 pr-10 bg-[#170a30]/80 hover:bg-[#1b0c38] focus:bg-[#1d0e3d] text-white placeholder-violet-300/40 text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all shadow-inner"
+                  className="w-full h-10 pl-9 pr-9 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 text-violet-400/70 hover:text-violet-200 p-1 cursor-pointer transition-colors"
+                  className="absolute right-2.5 text-violet-400/60 hover:text-violet-200 p-1 cursor-pointer transition-colors"
                 >
-                  {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
               </div>
             </div>
@@ -296,10 +293,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold text-sm tracking-wide uppercase flex items-center justify-center gap-2 shadow-[0_4px_24px_rgba(139,92,246,0.35)] hover:shadow-[0_6px_28px_rgba(139,92,246,0.45)] active:scale-[0.98] transition-all cursor-pointer border border-violet-400/30 disabled:opacity-70"
+                className="w-full h-11 sm:h-12 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm tracking-wide uppercase flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(124,58,237,0.25)] hover:shadow-[0_6px_20px_rgba(124,58,237,0.35)] active:scale-[0.98] transition-all cursor-pointer border border-violet-400/30 disabled:opacity-70"
               >
                 {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 ) : (
                   <>
                     <span>CREAR CUENTA</span>
@@ -311,15 +308,15 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
           </form>
         )}
 
-        {/* Secondary link: ¿Ya tenés cuenta? Iniciá sesión */}
-        <div className="text-center pt-4">
+        {/* Secondary link */}
+        <div className="text-center pt-3">
           <button
             type="button"
             onClick={onNavigateToLogin}
-            className="text-xs font-semibold text-violet-300 hover:text-white transition-colors py-1.5 px-3 rounded-lg hover:bg-violet-900/30 cursor-pointer"
+            className="text-xs font-medium text-violet-300/80 hover:text-white transition-colors py-1.5 px-3 rounded-lg hover:bg-violet-900/20 cursor-pointer"
           >
             ¿Ya tenés cuenta?{' '}
-            <span className="text-violet-400 underline underline-offset-4 font-bold">
+            <span className="text-violet-400 underline underline-offset-4 font-semibold hover:text-violet-300">
               Iniciá sesión
             </span>
           </button>
@@ -327,7 +324,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 text-center py-2 text-[11px] text-violet-400/40">
+      <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
         GANAMOS © {new Date().getFullYear()} · Registro Oficial
       </div>
     </div>
