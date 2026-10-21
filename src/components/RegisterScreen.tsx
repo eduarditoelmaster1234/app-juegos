@@ -96,33 +96,34 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col justify-between min-h-full w-full px-5 py-5 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
+    <div className="relative flex flex-col justify-between min-h-full w-full px-4 sm:px-5 py-4 sm:py-5 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
       {/* Subtle controlled ambient lighting */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Top bar with back navigation */}
-      <div className="relative z-10 flex items-center justify-between w-full pt-1 pb-2">
+      {/* Top bar with back navigation - Standardized 48px height */}
+      <div className="relative z-10 flex items-center justify-between w-full h-12 shrink-0 border-b border-violet-950/40 pb-1">
         <button
+          type="button"
           onClick={onNavigateToLogin}
-          className="p-2 -ml-2 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 transition-colors cursor-pointer"
+          className="w-9 h-9 flex items-center justify-center -ml-1 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer"
           aria-label="Volver al inicio de sesión"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-5 h-5" />
         </button>
 
         <GanamosLogo size="sm" showSubtitle={false} />
 
-        <div className="w-6" />
+        <div className="w-9" />
       </div>
 
       {/* Form Container */}
-      <div className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col">
+      <div className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col py-2">
         {/* Header */}
-        <div className="text-center mb-4">
+        <div className="text-center mb-4 space-y-1">
           <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
             Crear cuenta
           </h1>
-          <p className="text-xs text-violet-300/60 mt-0.5">
+          <p className="text-xs text-violet-300/60">
             Completá tus datos para registrarte
           </p>
         </div>
@@ -132,15 +133,16 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
             <div className="w-12 h-12 rounded-full bg-violet-600/20 border border-violet-400/30 text-violet-300 mx-auto flex items-center justify-center">
               <CheckCircle2 className="w-7 h-7 text-violet-400" />
             </div>
-            <div>
+            <div className="space-y-1">
               <h2 className="text-sm font-bold text-white">
                 Datos validados correctamente
               </h2>
-              <p className="text-xs text-violet-300/60 mt-1 leading-relaxed">
+              <p className="text-xs text-violet-300/60 leading-relaxed">
                 El formulario quedó listo para la conexión con el servidor.
               </p>
             </div>
             <button
+              type="button"
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
@@ -149,17 +151,17 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-2.5">
+          <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
             {errorMessage && (
-              <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium">
+              <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium leading-relaxed">
                 {errorMessage}
               </div>
             )}
 
-            {/* Nombre y Apellido (2 columns for compact vertical rhythm) */}
-            <div className="grid grid-cols-2 gap-2">
-              <div className="space-y-0.5">
-                <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+            {/* Nombre y Apellido */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="space-y-1">
+                <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                   Nombre *
                 </label>
                 <input
@@ -169,12 +171,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Tu nombre"
                   autoComplete="given-name"
-                  className="w-full h-10 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
 
-              <div className="space-y-0.5">
-                <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+              <div className="space-y-1">
+                <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                   Apellido *
                 </label>
                 <input
@@ -184,18 +186,18 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Tu apellido"
                   autoComplete="family-name"
-                  className="w-full h-10 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 px-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Teléfono */}
-            <div className="space-y-0.5">
-              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-1">
+              <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                 Número de teléfono *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                <div className="absolute left-3.5 text-violet-400/60 pointer-events-none">
                   <Phone className="w-3.5 h-3.5" />
                 </div>
                 <input
@@ -206,18 +208,18 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="+54 9 11 2345-6789"
                   autoComplete="tel"
-                  className="w-full h-10 pl-9 pr-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 pl-10 pr-3.5 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Usuario */}
-            <div className="space-y-0.5">
-              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-1">
+              <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                 Usuario *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                <div className="absolute left-3.5 text-violet-400/60 pointer-events-none">
                   <User className="w-3.5 h-3.5" />
                 </div>
                 <input
@@ -227,18 +229,18 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Elegí tu usuario"
                   autoComplete="username"
-                  className="w-full h-10 pl-9 pr-3 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 pl-10 pr-3.5 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Contraseña */}
-            <div className="space-y-0.5">
-              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-1">
+              <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                 Contraseña *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                <div className="absolute left-3.5 text-violet-400/60 pointer-events-none">
                   <Lock className="w-3.5 h-3.5" />
                 </div>
                 <input
@@ -248,12 +250,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Mínimo 6 caracteres"
                   autoComplete="new-password"
-                  className="w-full h-10 pl-9 pr-9 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 pl-10 pr-10 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2.5 text-violet-400/60 hover:text-violet-200 p-1 cursor-pointer transition-colors"
+                  className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
@@ -261,12 +263,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
             </div>
 
             {/* Confirmar contraseña */}
-            <div className="space-y-0.5">
-              <label className="text-[10px] font-semibold text-violet-200/80 pl-1 block">
+            <div className="space-y-1">
+              <label className="text-[10.5px] font-semibold text-violet-200/80 pl-1 block">
                 Confirmar contraseña *
               </label>
               <div className="relative flex items-center">
-                <div className="absolute left-3 text-violet-400/60 pointer-events-none">
+                <div className="absolute left-3.5 text-violet-400/60 pointer-events-none">
                   <Lock className="w-3.5 h-3.5" />
                 </div>
                 <input
@@ -276,12 +278,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
                   onChange={handleChange}
                   placeholder="Repetí la contraseña"
                   autoComplete="new-password"
-                  className="w-full h-10 pl-9 pr-9 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
+                  className="w-full h-10.5 sm:h-11 pl-10 pr-10 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-2.5 text-violet-400/60 hover:text-violet-200 p-1 cursor-pointer transition-colors"
+                  className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
                 >
                   {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
@@ -309,7 +311,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
         )}
 
         {/* Secondary link */}
-        <div className="text-center pt-3">
+        <div className="text-center pt-3 sm:pt-4">
           <button
             type="button"
             onClick={onNavigateToLogin}
@@ -324,7 +326,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
+      <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35 shrink-0">
         GANAMOS © {new Date().getFullYear()} · Registro oficial
       </div>
     </div>

@@ -13,7 +13,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   onNavigateToRegister,
   onNavigateToRecovery,
 }) => {
-  // Empty by default as requested
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -41,27 +40,27 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col justify-between min-h-full w-full px-5 py-6 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
-      {/* Subtle controlled ambient lighting - softer, non-neon */}
+    <div className="relative flex flex-col justify-between min-h-full w-full px-4 sm:px-5 py-5 sm:py-6 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
+      {/* Subtle controlled ambient lighting */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-60 h-60 bg-purple-900/10 rounded-full blur-[80px] pointer-events-none" />
 
       {/* Top spacer */}
-      <div className="w-full pt-1" />
+      <div className="w-full pt-1 shrink-0" />
 
-      {/* Center content container - balanced proportions for small & large mobile screens */}
-      <div className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col items-center">
+      {/* Center content container */}
+      <div className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col items-center py-2">
         {/* Brand Logo Lockup */}
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <GanamosLogo size="lg" showSubtitle={true} />
         </div>
 
         {/* Title & subtitle */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-5 sm:mb-6 space-y-1">
           <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
             Iniciar sesión
           </h1>
-          <p className="text-xs text-violet-300/60 mt-1">
+          <p className="text-xs text-violet-300/60">
             Ingresá tus credenciales para acceder
           </p>
         </div>
@@ -69,7 +68,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         {/* Form Container */}
         <form onSubmit={handleSubmit} className="w-full space-y-3.5">
           {errorMessage && (
-            <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium">
+            <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium leading-relaxed">
               {errorMessage}
             </div>
           )}
@@ -120,7 +119,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 text-violet-400/60 hover:text-violet-200 p-1 cursor-pointer transition-colors"
+                className="absolute right-1.5 w-8 h-8 flex items-center justify-center text-violet-400/60 hover:text-violet-200 rounded-lg cursor-pointer transition-colors"
                 title={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
               >
                 {showPassword ? (
@@ -132,7 +131,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             </div>
           </div>
 
-          {/* Forgot credentials link - discrete but visible */}
+          {/* Forgot credentials link */}
           <div className="flex justify-end pt-0.5">
             <button
               type="button"
@@ -178,7 +177,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
       </div>
 
       {/* Clean footer */}
-      <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
+      <div className="relative z-10 text-center py-2 text-[10px] text-violet-400/35 shrink-0">
         GANAMOS © {new Date().getFullYear()} · Acceso oficial
       </div>
     </div>

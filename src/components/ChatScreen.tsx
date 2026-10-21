@@ -87,17 +87,13 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
       const vv = window.visualViewport;
       if (!vv) return;
 
-      // Calculate difference between window height and visual viewport height
-      // This represents keyboard height + any dynamic browser bars
       const layoutHeight = window.innerHeight;
       const visualHeight = vv.height;
       const offsetTop = vv.offsetTop;
 
-      // Positive offset indicates virtual keyboard presence
       const offset = Math.max(0, layoutHeight - visualHeight - offsetTop);
       setKeyboardOffset(offset);
 
-      // Keep active messages visible
       scrollToBottom('auto');
     };
 
@@ -184,32 +180,33 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
       {/* Soft ambient glow */}
       <div className="absolute top-0 right-0 w-60 h-60 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Compact, clean Header */}
-      <header className="relative z-10 flex items-center justify-between px-3.5 py-2.5 bg-[#100522]/95 backdrop-blur-md border-b border-violet-950/60 shrink-0">
-        <div className="flex items-center gap-2.5">
+      {/* Top Header - Standardized 56px height */}
+      <header className="relative z-10 flex items-center justify-between px-3 sm:px-4 h-14 bg-[#100522]/95 backdrop-blur-md border-b border-violet-950/60 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
           <button
+            type="button"
             onClick={onBackToHome}
             aria-label="Volver al inicio"
-            className="w-9 h-9 flex items-center justify-center text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer shrink-0"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
 
-          <div className="relative">
+          <div className="relative shrink-0">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center text-white border border-violet-400/30 shadow-[0_0_10px_rgba(139,92,246,0.25)]">
               <Headphones className="w-4 h-4" />
             </div>
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#100522]" />
           </div>
 
-          <div>
+          <div className="min-w-0 truncate">
             <div className="flex items-center gap-1.5">
-              <h2 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-none">
+              <h2 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-none truncate">
                 Soporte GANAMOS
               </h2>
-              <ShieldCheck className="w-3.5 h-3.5 text-violet-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-violet-400 shrink-0" />
             </div>
-            <p className="text-[10px] text-violet-300/60 mt-0.5">
+            <p className="text-[10px] text-violet-300/60 mt-0.5 truncate">
               En línea · Cargas, retiros y consultas
             </p>
           </div>
@@ -217,10 +214,10 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
       </header>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto px-4 py-3.5 space-y-3">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-3.5 space-y-3">
         {/* Subtle security notice */}
         <div className="flex justify-center my-0.5">
-          <span className="text-[10px] text-violet-300/45 bg-violet-950/30 border border-violet-800/25 px-2.5 py-0.5 rounded-full">
+          <span className="text-[10px] text-violet-300/45 bg-violet-950/30 border border-violet-800/25 px-3 py-0.5 rounded-full">
             Canal de atención oficial de GANAMOS
           </span>
         </div>
@@ -233,7 +230,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
               className={`flex flex-col ${isUser ? 'items-end' : 'items-start'}`}
             >
               <div
-                className={`max-w-[85%] px-3.5 py-2 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
+                className={`max-w-[85%] sm:max-w-[80%] px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-sm ${
                   isUser
                     ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-br-xs border border-violet-400/25'
                     : 'bg-[#15082a] text-violet-100 rounded-bl-xs border border-violet-500/20'
@@ -243,7 +240,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                   {message.text}
                 </p>
                 <div
-                  className={`flex items-center justify-end gap-1 mt-0.5 text-[9px] ${
+                  className={`flex items-center justify-end gap-1 mt-1 text-[9.5px] ${
                     isUser ? 'text-violet-200/80' : 'text-violet-400/50'
                   }`}
                 >
@@ -271,14 +268,15 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Quick suggestions pills - hide if keyboard is open to conserve vertical space */}
+      {/* Quick suggestions pills */}
       {keyboardOffset === 0 && (
-        <div className="px-3 py-1 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+        <div className="px-4 sm:px-5 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0 border-t border-violet-950/40">
           {quickPrompts.map((prompt, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => handleSendMessage(prompt)}
-              className="text-[11px] whitespace-nowrap px-2.5 py-1 rounded-full bg-violet-950/50 hover:bg-violet-900/50 active:bg-violet-800 text-violet-300 hover:text-white border border-violet-500/15 transition-colors cursor-pointer shrink-0"
+              className="text-[11px] whitespace-nowrap px-3 py-1.5 rounded-full bg-violet-950/50 hover:bg-violet-900/50 active:bg-violet-800 text-violet-300 hover:text-white border border-violet-500/15 transition-colors cursor-pointer shrink-0"
             >
               {prompt}
             </button>
@@ -286,35 +284,36 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         </div>
       )}
 
-      {/* EMOJI PICKER DRAWER - Correctly positioned above input */}
+      {/* EMOJI PICKER DRAWER */}
       {showEmojiPicker && (
-        <div className="relative z-20 border-t border-violet-800/30 bg-[#120524] p-2.5 shadow-2xl shrink-0 transition-all max-h-40 overflow-y-auto">
-          <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-violet-900/30">
-            <span className="text-[11px] font-bold text-violet-200">
+        <div className="relative z-20 border-t border-violet-800/30 bg-[#120524] p-3 shadow-2xl shrink-0 transition-all max-h-48 overflow-y-auto">
+          <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-violet-900/30">
+            <span className="text-xs font-bold text-violet-200">
               Emojis
             </span>
             <button
+              type="button"
               onClick={() => setShowEmojiPicker(false)}
               className="p-1 text-violet-400 hover:text-white rounded-lg transition-colors cursor-pointer"
               title="Cerrar"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="space-y-1.5 max-h-32 overflow-y-auto pr-1">
+          <div className="space-y-2 pr-1">
             {EMOJI_CATEGORIES.map((category) => (
-              <div key={category.name} className="space-y-0.5">
-                <span className="text-[9px] font-semibold text-violet-400/60 uppercase tracking-wider block">
+              <div key={category.name} className="space-y-1">
+                <span className="text-[10px] font-semibold text-violet-400/60 uppercase tracking-wider block">
                   {category.name}
                 </span>
-                <div className="grid grid-cols-7 gap-1">
+                <div className="grid grid-cols-7 gap-1.5">
                   {category.emojis.map((emoji) => (
                     <button
                       key={emoji}
                       type="button"
                       onClick={() => handleInsertEmoji(emoji)}
-                      className="h-8 rounded-lg hover:bg-violet-900/40 active:scale-95 flex items-center justify-center text-base transition-transform cursor-pointer"
+                      className="h-8 sm:h-9 rounded-xl hover:bg-violet-900/40 active:scale-95 flex items-center justify-center text-lg transition-transform cursor-pointer"
                     >
                       {emoji}
                     </button>
@@ -326,14 +325,14 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
         </div>
       )}
 
-      {/* Input bar - Stays docked above keyboard */}
-      <div className="p-2.5 bg-[#0e041e]/95 backdrop-blur-md border-t border-violet-950/60 shrink-0">
+      {/* Input bar - Standard 44px elements */}
+      <div className="p-3 bg-[#0e041e]/95 backdrop-blur-md border-t border-violet-950/60 shrink-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 max-w-[420px] mx-auto"
         >
           {/* Emoji Trigger */}
           <button
@@ -342,14 +341,14 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
               setShowEmojiPicker(!showEmojiPicker);
               setTimeout(() => scrollToBottom('smooth'), 100);
             }}
-            className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors cursor-pointer border shrink-0 ${
+            className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors cursor-pointer border shrink-0 ${
               showEmojiPicker
                 ? 'bg-violet-600 text-white border-violet-400'
                 : 'bg-[#15082a] text-violet-300/80 hover:text-white hover:bg-violet-950 border-violet-500/20'
             }`}
             title="Insertar emoji"
           >
-            <Smile className="w-4 h-4" />
+            <Smile className="w-5 h-5" />
           </button>
 
           {/* Text Input */}
@@ -358,12 +357,11 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
             type="text"
             value={inputText}
             onFocus={() => {
-              // Scroll to bottom smoothly when keyboard opens
               setTimeout(() => scrollToBottom('smooth'), 150);
             }}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Escribí tu mensaje..."
-            className="flex-1 h-10 px-3.5 bg-[#15082a] text-white placeholder-violet-300/35 text-xs sm:text-sm rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all"
+            className="flex-1 h-11 px-3.5 bg-[#15082a] text-white placeholder-violet-300/35 text-xs sm:text-sm rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
           />
 
           {/* Send Button */}
@@ -371,7 +369,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
             type="submit"
             disabled={!inputText.trim()}
             aria-label="Enviar mensaje"
-            className="w-10 h-10 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed text-white flex items-center justify-center shadow-[0_2px_10px_rgba(124,58,237,0.25)] transition-all cursor-pointer border border-violet-400/25 shrink-0"
+            className="w-11 h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed text-white flex items-center justify-center shadow-[0_2px_10px_rgba(124,58,237,0.25)] transition-all cursor-pointer border border-violet-400/25 shrink-0"
           >
             <Send className="w-4 h-4 ml-0.5" />
           </button>

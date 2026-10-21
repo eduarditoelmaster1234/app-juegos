@@ -35,12 +35,13 @@ export const GameScreen: React.FC<GameScreenProps> = ({
 
   return (
     <div className="relative flex flex-col h-full w-full bg-[#05010a] overflow-hidden select-none">
-      {/* Game Header Bar */}
-      <header className="relative z-20 flex items-center justify-between px-3.5 py-2 bg-[#0c041c] border-b border-violet-950/70 shrink-0">
+      {/* Game Header Bar - Unified 56px height */}
+      <header className="relative z-20 flex items-center justify-between px-3.5 sm:px-4 h-14 bg-[#0c041c] border-b border-violet-950/70 shrink-0">
         {/* Back Button */}
         <button
+          type="button"
           onClick={onBackToHome}
-          className="flex items-center gap-1.5 py-1.5 px-3 rounded-xl bg-violet-950/50 hover:bg-violet-900/50 active:bg-violet-800 text-violet-200 hover:text-white border border-violet-500/20 text-xs font-bold transition-all cursor-pointer min-h-[38px]"
+          className="flex items-center gap-1.5 h-9 px-3 rounded-xl bg-violet-950/50 hover:bg-violet-900/50 active:bg-violet-800 text-violet-200 hover:text-white border border-violet-500/20 text-xs font-bold transition-all cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver</span>
@@ -57,9 +58,10 @@ export const GameScreen: React.FC<GameScreenProps> = ({
         {/* Action Controls */}
         <div className="flex items-center gap-1">
           <button
+            type="button"
             onClick={handleReload}
             title="Recargar juego"
-            className="p-2 rounded-xl text-violet-300 hover:text-white hover:bg-violet-900/30 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
+            className="w-9 h-9 rounded-xl text-violet-300 hover:text-white hover:bg-violet-900/30 transition-colors cursor-pointer flex items-center justify-center"
           >
             <RotateCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
           </button>
@@ -69,7 +71,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title={`Abrir ${gameTitle} en ventana externa`}
-            className="p-2 rounded-xl text-violet-300 hover:text-white hover:bg-violet-900/30 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
+            className="w-9 h-9 rounded-xl text-violet-300 hover:text-white hover:bg-violet-900/30 transition-colors cursor-pointer flex items-center justify-center"
           >
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
@@ -78,8 +80,8 @@ export const GameScreen: React.FC<GameScreenProps> = ({
 
       {/* Helper notice if framed site is restricted by security headers */}
       {showHelperBanner && (
-        <div className="relative z-10 px-3.5 py-1.5 bg-[#140628] border-b border-violet-900/40 flex items-center justify-between text-[11px] text-violet-200">
-          <div className="flex items-center gap-2 truncate">
+        <div className="relative z-10 px-3.5 sm:px-4 py-2 bg-[#140628] border-b border-violet-900/40 flex items-center justify-between text-[11px] text-violet-200">
+          <div className="flex items-center gap-2 truncate pr-2">
             <ShieldCheck className="w-3.5 h-3.5 text-violet-400 shrink-0" />
             <span className="truncate">
               {gameTitle} — {domain}
@@ -95,6 +97,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({
               Abrir directo
             </a>
             <button
+              type="button"
               onClick={() => setShowHelperBanner(false)}
               className="text-violet-400 hover:text-violet-200 px-1 font-bold cursor-pointer"
             >
@@ -128,17 +131,17 @@ export const GameScreen: React.FC<GameScreenProps> = ({
         <iframe
           key={iframeKey}
           src={gameUrl}
-          title={`${gameTitle} Plataforma`}
+          title={`${gameTitle} — Plataforma oficial`}
           onLoad={() => setIsLoading(false)}
           allow="fullscreen; autoplay; clipboard-write; encrypted-media"
           className="w-full h-full border-0 bg-transparent"
         />
 
-        {/* Fallback helper bottom card if external site blocks iframe */}
-        <div className="absolute bottom-3 inset-x-3 z-10 p-2.5 rounded-xl bg-[#120524]/95 backdrop-blur-md border border-violet-500/20 shadow-lg flex items-center justify-between pointer-events-auto">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="w-3.5 h-3.5 text-violet-400 shrink-0" />
-            <div className="text-[10px] text-violet-200/80 leading-tight truncate">
+        {/* Fallback helper bottom card */}
+        <div className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 max-w-[420px] mx-auto z-10 p-3 rounded-2xl bg-[#120524]/95 backdrop-blur-md border border-violet-500/20 shadow-xl flex items-center justify-between gap-2.5 pointer-events-auto">
+          <div className="flex items-center gap-2.5 min-w-0 pr-1">
+            <AlertCircle className="w-4 h-4 text-violet-400 shrink-0" />
+            <div className="text-[11px] text-violet-200/90 leading-tight truncate">
               ¿No se visualiza {gameTitle} en el navegador?
             </div>
           </div>
@@ -146,7 +149,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({
             href={gameUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-1 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-[10px] font-bold tracking-wide transition-colors shrink-0"
+            className="h-8 px-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-[11px] font-bold tracking-wide transition-colors shrink-0 flex items-center justify-center"
           >
             Abrir directo
           </a>

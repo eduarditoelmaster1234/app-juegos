@@ -27,15 +27,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col justify-between min-h-full w-full px-5 py-4 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
+    <div className="relative flex flex-col justify-between min-h-full w-full px-4 sm:px-5 py-3 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
       {/* Controlled, soft ambient violet glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Top Header */}
-      <header className="relative z-10 flex items-center justify-between w-full pt-1 pb-3 border-b border-violet-950/60">
+      {/* Top Header - Standardized 56px height */}
+      <header className="relative z-10 flex items-center justify-between w-full h-14 shrink-0 border-b border-violet-950/60 pb-1">
         <button
+          type="button"
           onClick={onBackToHome}
-          className="flex items-center gap-1.5 p-1.5 -ml-1 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 h-9 px-2.5 -ml-1 text-violet-300 hover:text-white rounded-xl hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer"
           aria-label="Volver al inicio"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -50,7 +51,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
       </header>
 
       {/* Main Profile Info */}
-      <main className="relative z-10 flex flex-col items-center flex-1 my-auto w-full max-w-[340px] mx-auto py-4 space-y-4">
+      <main className="relative z-10 flex flex-col items-center flex-1 my-auto w-full max-w-[340px] sm:max-w-[350px] mx-auto py-4 space-y-4">
         {/* User Avatar & Header */}
         <div className="flex flex-col items-center text-center space-y-2">
           <div className="relative">
@@ -65,29 +66,29 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
             </div>
           </div>
 
-          <div>
+          <div className="space-y-0.5">
             <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
               {profile.firstName} {profile.lastName}
             </h2>
-            <p className="text-xs font-semibold text-violet-400 mt-0.5">
+            <p className="text-xs font-semibold text-violet-400">
               @{profile.username}
             </p>
           </div>
         </div>
 
         {/* User Details List */}
-        <div className="w-full space-y-2">
+        <div className="w-full space-y-2.5">
           {/* Nombre */}
-          <div className="p-3 rounded-xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
+          <div className="p-3.5 rounded-2xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
                 <User className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] font-semibold text-violet-300/60 block">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-semibold text-violet-300/60 block leading-tight">
                   Nombre
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-white">
+                <span className="text-xs sm:text-sm font-bold text-white block leading-tight">
                   {profile.firstName}
                 </span>
               </div>
@@ -95,16 +96,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           </div>
 
           {/* Apellido */}
-          <div className="p-3 rounded-xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
+          <div className="p-3.5 rounded-2xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
                 <User className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] font-semibold text-violet-300/60 block">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-semibold text-violet-300/60 block leading-tight">
                   Apellido
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-white">
+                <span className="text-xs sm:text-sm font-bold text-white block leading-tight">
                   {profile.lastName}
                 </span>
               </div>
@@ -112,16 +113,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           </div>
 
           {/* Teléfono */}
-          <div className="p-3 rounded-xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
+          <div className="p-3.5 rounded-2xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
                 <Phone className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] font-semibold text-violet-300/60 block">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-semibold text-violet-300/60 block leading-tight">
                   Número de teléfono
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-white tabular-nums">
+                <span className="text-xs sm:text-sm font-bold text-white tabular-nums block leading-tight">
                   {profile.phone}
                 </span>
               </div>
@@ -129,16 +130,16 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           </div>
 
           {/* Usuario */}
-          <div className="p-3 rounded-xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
+          <div className="p-3.5 rounded-2xl bg-[#130726]/90 border border-violet-500/20 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
                 <ShieldCheck className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[10px] font-semibold text-violet-300/60 block">
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-semibold text-violet-300/60 block leading-tight">
                   Usuario de acceso
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-white">
+                <span className="text-xs sm:text-sm font-bold text-white block leading-tight">
                   {profile.username}
                 </span>
               </div>
@@ -147,10 +148,11 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         </div>
 
         {/* Action: Cerrar sesión */}
-        <div className="w-full pt-1">
+        <div className="w-full pt-1.5">
           <button
+            type="button"
             onClick={onLogout}
-            className="w-full h-11 rounded-xl bg-red-950/30 hover:bg-red-950/50 active:bg-red-950/70 text-red-200 hover:text-white border border-red-500/30 hover:border-red-400/40 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-sm active:scale-[0.985]"
+            className="w-full h-11 sm:h-12 rounded-xl bg-red-950/30 hover:bg-red-950/50 active:bg-red-950/70 text-red-200 hover:text-white border border-red-500/30 hover:border-red-400/40 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-sm active:scale-[0.985]"
           >
             <LogOut className="w-4 h-4" />
             <span>Cerrar sesión</span>
@@ -159,7 +161,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center py-1.5 text-[10px] text-violet-400/35">
+      <footer className="relative z-10 text-center py-2 text-[10px] text-violet-400/35 shrink-0">
         GANAMOS · Cuenta oficial
       </footer>
     </div>

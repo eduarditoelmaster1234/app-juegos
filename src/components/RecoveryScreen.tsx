@@ -64,33 +64,34 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
   };
 
   return (
-    <div className="relative flex flex-col justify-between min-h-full w-full px-5 py-5 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
+    <div className="relative flex flex-col justify-between min-h-full w-full px-4 sm:px-5 py-4 sm:py-5 overflow-y-auto bg-gradient-to-b from-[#0a0316] via-[#07020f] to-[#04010a]">
       {/* Controlled, soft ambient violet glow */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Top Header */}
-      <header className="relative z-10 flex items-center justify-between w-full pt-1 pb-2">
+      {/* Top Header - Standardized 48px height */}
+      <header className="relative z-10 flex items-center justify-between w-full h-12 shrink-0 border-b border-violet-950/40 pb-1">
         <button
+          type="button"
           onClick={handleBack}
-          className="p-2 -ml-2 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 transition-colors cursor-pointer"
+          className="w-9 h-9 flex items-center justify-center -ml-1 text-violet-300 hover:text-white rounded-full hover:bg-violet-900/20 active:scale-95 transition-all cursor-pointer"
           aria-label="Volver"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-5 h-5" />
         </button>
 
         <GanamosLogo size="sm" showSubtitle={false} />
 
-        <div className="w-6" />
+        <div className="w-9" />
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col">
+      <main className="relative z-10 w-full max-w-[340px] mx-auto my-auto flex flex-col py-2">
         {/* Header Title & Intro */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 space-y-1">
           <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
             Recuperar acceso
           </h1>
-          <p className="text-xs text-violet-300/60 mt-1 leading-relaxed">
+          <p className="text-xs text-violet-300/60 leading-relaxed">
             {step === 'select'
               ? '¿Tenés problemas para ingresar? Seleccioná qué dato necesitás recuperar y te ayudaremos a recuperar el acceso a tu cuenta.'
               : step === 'username_form'
@@ -106,46 +107,48 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
           <div className="space-y-3">
             {/* Option A: Olvidé mi usuario */}
             <button
+              type="button"
               onClick={() => {
                 setErrorMessage('');
                 setStep('username_form');
               }}
-              className="w-full p-4 rounded-2xl bg-[#130726]/90 hover:bg-[#190a33] active:bg-[#100520] border border-violet-500/20 hover:border-violet-400/40 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-3.5 text-left group"
+              className="w-full p-3.5 sm:p-4 rounded-2xl bg-[#130726]/90 hover:bg-[#190a33] active:bg-[#100520] border border-violet-500/20 hover:border-violet-400/40 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-3.5 text-left group"
             >
               <div className="w-11 h-11 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 group-hover:text-white group-hover:bg-violet-600/30 transition-all shrink-0">
                 <UserCheck className="w-5 h-5" />
               </div>
-              <div className="flex-1">
-                <h2 className="text-sm font-bold text-white tracking-tight">
+              <div className="flex-1 space-y-0.5">
+                <h2 className="text-sm font-bold text-white tracking-tight leading-snug">
                   Olvidé mi usuario
                 </h2>
-                <p className="text-[11px] text-violet-300/60 mt-0.5">
+                <p className="text-[11px] text-violet-300/60 leading-tight">
                   Recuperá tu usuario con tu teléfono registrado
                 </p>
               </div>
-              <ArrowRight className="w-4 h-4 text-violet-400/60 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-4 h-4 text-violet-400/60 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all shrink-0" />
             </button>
 
             {/* Option B: Olvidé mi contraseña */}
             <button
+              type="button"
               onClick={() => {
                 setErrorMessage('');
                 setStep('password_form');
               }}
-              className="w-full p-4 rounded-2xl bg-[#130726]/90 hover:bg-[#190a33] active:bg-[#100520] border border-violet-500/20 hover:border-violet-400/40 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-3.5 text-left group"
+              className="w-full p-3.5 sm:p-4 rounded-2xl bg-[#130726]/90 hover:bg-[#190a33] active:bg-[#100520] border border-violet-500/20 hover:border-violet-400/40 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-3.5 text-left group"
             >
               <div className="w-11 h-11 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 group-hover:text-white group-hover:bg-violet-600/30 transition-all shrink-0">
                 <KeyRound className="w-5 h-5" />
               </div>
-              <div className="flex-1">
-                <h2 className="text-sm font-bold text-white tracking-tight">
+              <div className="flex-1 space-y-0.5">
+                <h2 className="text-sm font-bold text-white tracking-tight leading-snug">
                   Olvidé mi contraseña
                 </h2>
-                <p className="text-[11px] text-violet-300/60 mt-0.5">
+                <p className="text-[11px] text-violet-300/60 leading-tight">
                   Gestioná el cambio seguro de tu clave de acceso
                 </p>
               </div>
-              <ArrowRight className="w-4 h-4 text-violet-400/60 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-4 h-4 text-violet-400/60 group-hover:text-violet-300 group-hover:translate-x-0.5 transition-all shrink-0" />
             </button>
           </div>
         )}
@@ -154,7 +157,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
         {step === 'username_form' && (
           <form onSubmit={handleRecoverUsername} className="space-y-3.5">
             {errorMessage && (
-              <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium">
+              <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium leading-relaxed">
                 {errorMessage}
               </div>
             )}
@@ -180,7 +183,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
                   className="w-full h-11 pl-10 pr-3.5 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs sm:text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
-              <p className="text-[10px] text-violet-400/60 pl-1 pt-0.5">
+              <p className="text-[10.5px] text-violet-400/60 pl-1 pt-1 leading-tight">
                 Por seguridad, los datos son verificados manualmente por administración.
               </p>
             </div>
@@ -205,7 +208,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
         {step === 'password_form' && (
           <form onSubmit={handleRecoverPassword} className="space-y-3.5">
             {errorMessage && (
-              <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium">
+              <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/30 text-red-200 text-xs text-center font-medium leading-relaxed">
                 {errorMessage}
               </div>
             )}
@@ -230,7 +233,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
                   className="w-full h-11 pl-10 pr-3.5 bg-[#130726]/90 hover:bg-[#17092e] focus:bg-[#1a0a33] text-white placeholder-violet-300/35 text-xs sm:text-sm font-medium rounded-xl border border-violet-500/20 focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400/30 transition-all shadow-inner"
                 />
               </div>
-              <p className="text-[10px] text-violet-400/60 pl-1 pt-0.5">
+              <p className="text-[10.5px] text-violet-400/60 pl-1 pt-1 leading-tight">
                 Identificá tu cuenta para iniciar el protocolo de restablecimiento.
               </p>
             </div>
@@ -258,21 +261,22 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
               <ShieldAlert className="w-7 h-7 text-violet-400" />
             </div>
 
-            <div>
+            <div className="space-y-1">
               <h2 className="text-sm font-bold text-white">
                 Solicitud registrada
               </h2>
-              <p className="text-xs text-violet-300/70 mt-1.5 leading-relaxed">
+              <p className="text-xs text-violet-300/70 leading-relaxed">
                 El administrador de GANAMOS verificará los datos registrados de tu teléfono y te asistirá para recuperar el acceso a tu cuenta.
               </p>
             </div>
 
             <div className="p-3 rounded-xl bg-violet-950/40 border border-violet-800/30 text-[11px] text-violet-300/80 text-left space-y-1">
               <div className="font-semibold text-white">Próximo paso:</div>
-              <div>• Aguardá la confirmación del administrador o comunicate por los canales oficiales con tu número registrado.</div>
+              <div className="leading-relaxed">• Aguardá la confirmación del administrador o comunicate por los canales oficiales con tu número registrado.</div>
             </div>
 
             <button
+              type="button"
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
@@ -289,21 +293,22 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
               <CheckCircle2 className="w-7 h-7 text-violet-400" />
             </div>
 
-            <div>
+            <div className="space-y-1">
               <h2 className="text-sm font-bold text-white">
                 Solicitud preparada
               </h2>
-              <p className="text-xs text-violet-300/70 mt-1.5 leading-relaxed">
+              <p className="text-xs text-violet-300/70 leading-relaxed">
                 Tu solicitud de recuperación fue preparada. Seguí las instrucciones de atención para verificar tu identidad y recuperar el acceso.
               </p>
             </div>
 
             <div className="p-3 rounded-xl bg-violet-950/40 border border-violet-800/30 text-[11px] text-violet-300/80 text-left space-y-1">
               <div className="font-semibold text-white">Nota de seguridad:</div>
-              <div>• El restablecimiento definitivo se coordina tras validar la titularidad de tu cuenta con el equipo de atención.</div>
+              <div className="leading-relaxed">• El restablecimiento definitivo se coordina tras validar la titularidad de tu cuenta con el equipo de atención.</div>
             </div>
 
             <button
+              type="button"
               onClick={onNavigateToLogin}
               className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(124,58,237,0.25)] cursor-pointer active:scale-[0.98] transition-transform"
             >
@@ -313,7 +318,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
           </div>
         )}
 
-        {/* Return to login link (only visible on non-success steps) */}
+        {/* Return to login link */}
         {(step === 'select' || step === 'username_form' || step === 'password_form') && (
           <div className="text-center pt-4">
             <button
@@ -331,7 +336,7 @@ export const RecoveryScreen: React.FC<RecoveryScreenProps> = ({ onNavigateToLogi
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center py-2 text-[10px] text-violet-400/35">
+      <footer className="relative z-10 text-center py-2 text-[10px] text-violet-400/35 shrink-0">
         GANAMOS © {new Date().getFullYear()} · Recuperación de cuenta
       </footer>
     </div>
