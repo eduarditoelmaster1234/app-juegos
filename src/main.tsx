@@ -2,11 +2,19 @@ import {createRoot} from 'react-dom/client';
 import { Capacitor } from '@capacitor/core';
 import App from './App.tsx';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
+import { PwaAccessGate } from './components/PwaAccessGate.tsx';
+import { initializeInstallPromptCapture } from './lib/pwa/installation.ts';
 import './index.css';
+
+// Debe ejecutarse antes del render para conservar el evento nativo de
+// instalación aunque llegue durante el arranque de la app.
+initializeInstallPromptCapture();
 
 createRoot(document.getElementById('root')!).render(
   <ErrorBoundary>
-    <App />
+    <PwaAccessGate>
+      <App />
+    </PwaAccessGate>
   </ErrorBoundary>
 );
 
