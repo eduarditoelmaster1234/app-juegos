@@ -20,7 +20,7 @@ export default function App() {
     phone: '+54 9 11 2345-6789',
     username: 'Eduardo',
   });
-  const [unreadMessages, setUnreadMessages] = useState(1);
+  const [unreadMessages, setUnreadMessages] = useState(0);
   const [chatTopic, setChatTopic] = useState<'cargar' | 'retirar' | null>(null);
   const [selectedGame, setSelectedGame] = useState<{ url: string; name: string }>({
     url: 'https://ganamosbet.plus/',
@@ -151,6 +151,12 @@ export default function App() {
             <div className="flex-1 overflow-hidden">
               <ChatScreen
                 username={userProfile.username}
+                displayName={
+                  [userProfile.firstName, userProfile.lastName]
+                    .map((part) => part.trim())
+                    .filter(Boolean)
+                    .join(' ') || userProfile.username
+                }
                 onBackToHome={handleBackToHome}
                 initialTopic={chatTopic}
               />

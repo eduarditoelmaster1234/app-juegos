@@ -68,6 +68,17 @@ const foregroundSvg = `
   </svg>
 `;
 
+// Icono "maskable" para la PWA: fondo a sangre completa y corona dentro
+// de la zona segura, sin esquinas transparentes.
+const maskableSvg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+    ${defs}
+    <rect width="512" height="512" fill="url(#bg)" />
+    <rect width="512" height="512" fill="url(#glow)" />
+    ${crownGroup(9, 153.5, 155)}
+  </svg>
+`;
+
 function render(svg, size, file) {
   const png = new Resvg(svg, {
     fitTo: { mode: 'width', value: size },
@@ -96,5 +107,11 @@ for (const [density, factor] of Object.entries(densities)) {
   render(iconSvg(true), legacySize, path.join(dir, 'ic_launcher_round.png'));
   render(foregroundSvg, foregroundSize, path.join(dir, 'ic_launcher_foreground.png'));
 }
+
+// Iconos para el manifest de la PWA (Vite copia public/ a dist/).
+const pwaIcons = path.join(root, 'public/icons');
+render(iconSvg(false), 192, path.join(pwaIcons, 'icon-192.png'));
+render(iconSvg(false), 512, path.join(pwaIcons, 'icon-512.png'));
+render(maskableSvg, 512, path.join(pwaIcons, 'icon-512-maskable.png'));
 
 console.log('Iconos generados.');
