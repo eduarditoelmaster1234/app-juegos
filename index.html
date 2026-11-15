@@ -1,26 +1,736 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#05010a" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="GANAMOS" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="/icons/icon-192.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-    <title>GANAMOS — App Oficial</title>
-    <meta name="description" content="Aplicación móvil oficial de GANAMOS con acceso directo a juegos, chat de soporte y diseño violeta premium." />
-    <meta property="og:title" content="GANAMOS — App Oficial" />
-    <meta property="og:description" content="Aplicación móvil oficial de GANAMOS con acceso directo a juegos, chat de soporte y diseño violeta premium." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plataforma Verificada | 24hs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="Icono-whatsapp.png" type="image/png">
+  
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script');
 
+    fbq('init', '934957906049826');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=934957906049826&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container > * {
+  margin-bottom: 32px;
+}
+  .container {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding: 5px 20px 0 20px;
+  text-align: center;
+}
+  
+  body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+
+  background: radial-gradient(circle at 50% 20%, #4b0082 0%, #1a0033 40%, #0d001a 100%);
+
+  color: #f2f2f2;
+  padding: 0 20px 120px 20px; /* espacio abajo por footer */
+}
+
+  header { 
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+  .logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;   /* 👈 agregá esto */
+  line-height: 1.1;
+}
+
+.logo-main {
+  color: #f1f1f1de; /* blanco suavizado elegante */
+
+  text-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.85),  /* sombra profunda */
+    0 2px 0 rgba(0, 0, 0, 0.55),     /* volumen */
+    0 -1px 0 rgba(255, 255, 255, 0.55); /* filo superior más suave */
+}
+
+.logo-net {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 6px;
+  letter-spacing: 2px;
+
+  background: linear-gradient(
+    180deg,
+    #fff4b0 0%,   /* brillo superior */
+    #ffd700 35%,  /* dorado principal */
+    #e6ac00 65%,  /* dorado medio */
+    #b8860b 100%  /* sombra inferior */
+    
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #c77dff,
+    transparent
+  );
+  margin: 40px 0;
+  filter: drop-shadow(0 0 10px #c77dff);
+}
+
+  .verified { 
+    text-align: center; 
+    margin-top: 0px; 
+  }
+
+  .verified h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  color: #00ffae;
+  text-shadow: 0 0 12px #00ffaeaa;
+}
+
+  .verified .green { 
+    color: #00e0ff; 
+    font-weight: 700; 
+    font-size: 18px;
+    text-shadow: 0 0 6px #00e0ff60;
+  }
+
+  .tick {
+  width: 32px;
+  height: 32px;
+}
+
+ .message-badge {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: #111122;
+  color: #00ffae;
+
+  padding: 18px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 0 15px #00ffae30, 0 0 25px #00e0ff20;
+  border: 1px solid #00ffae40;
+
+  text-transform: uppercase;
+}
+
+
+.message-badge .badge-dot {
+  width: 10px;
+  height: 10px;
+  background: #00ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff00aa, 0 0 12px #00ff00aa;
+  animation: pulse-dot 1.5s infinite alternate;
+
+  position: relative;
+  top: -1px; /* 🔥 probá -1px o -2px */
+}
+
+
+  .whatsapp-logo { 
+    width: 50px;
+    margin-right: 20px; 
+    filter: drop-shadow(0 0 6px #00000060);
+    position: relative;
+    right: 5px;
+    animation: icon-wiggle 2s ease-in-out infinite;
+  }
+
+
+  /* .mensaje-bono {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  
+
+  background: linear-gradient(145deg, #1e0033, #2a004d);
+  border: 1px solid #00ffae40;
+
+  padding: 18px;
+  border-radius: 14px;
+
+  font-weight: 600;
+  color: #00ffae;
+  font-size: 16px;
+
+  box-shadow: 0 0 20px #00ffae20;
+} */
+  
+  .b0n0-text {
+  font-size: 22px;
+  position: relative;
+  right: 10px;
+  line-height: 25px;
+  margin-bottom: 2px;
+}
+
+.b0n0-destacado {
+  width: 100%;
+  margin-top: 20px;
+  padding: 18px;
+
+  background: linear-gradient(135deg, #00ffae25, #00e0ff25);
+  border: 1px solid #00ffae60;
+
+  border-radius: 18px;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  color: #00ffae;
+  text-align: center;
+
+  box-shadow: 0 0 20px rgba(0,255,174,0.25);
+
+  animation: pulse-b0n0 2.5s infinite;
+}
+
+.b0n0-destacado strong {
+  font-size: 18px;
+  color: #00ffae;
+  text-shadow: 0 0 10px rgba(0,255,174,0.7);
+}
+
+@keyframes pulse-b0n0 {
+  0% { box-shadow: 0 0 15px rgba(0,255,174,0.2); }
+  50% { box-shadow: 0 0 30px rgba(0,255,174,0.6); }
+  100% { box-shadow: 0 0 15px rgba(0,255,174,0.2); }
+}
+
+  .whatsapp-button {
+  position: relative;
+  margin-top: 40px;
+  background: linear-gradient(135deg, #00ffae, #00e0ff);
+  color: #000;
+  padding: 20px 28px;
+  border-radius: 40px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 22px;
+  width: 100%;
+  box-shadow: 0 18px 45px rgba(0,255,174,0.25);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;   /* 🔥 correcto */
+  justify-content: center; /* centramos el contenido */
+  
+  animation: pulse-glow 2.5s infinite, soft-bounce 2.5s ease-in-out infinite;
+  
+}
+
+.whatsapp-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0%   { left: -75%; }
+  100% { left: 125%; }
+}
+
+
+.whatsapp-button:active {
+  transform: scale(0.97);
+}
+
+
+  @keyframes pulse-glow {
+  0% {
+    box-shadow: 0 18px 45px rgba(0, 255, 119, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 255, 89, 0.6);
+  }
+  100% {
+    box-shadow: 0 18px 45px rgba(0, 255, 123, 0.25);
+  }
+}
+
+  .whatsapp-button:hover { 
+    transform: scale(1.03); 
+    box-shadow: 0 0 45px #00ffae;
+    animation-play-state: running;
+  }
+
+  .whatsapp-button:focus {
+  outline: 3px solid #00ffae;
+  outline-offset: 4px;
+  }
+
+
+  .clientes { 
+    margin-top: 40px;
+    background: linear-gradient(135deg, #00ffae20, #00e0ff20);
+    border: 1px solid #00ffae50;
+    color: #00ffae; 
+    padding: 20px; 
+    border-radius: 20px;
+    font-size: 15px; 
+    font-weight: 600; 
+    text-align: center;
+    box-shadow: 0 0 15px #00ffae30;
+    width: 100%;
+  }
+
+  .trustpilot {
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  padding: 20px;
+  border: 1px solid #3a1a55;
+  border-radius: 12px;
+  text-align: center;
+  color: #ddd;
+  box-shadow: 0 0 15px #00000080;
+  width: 100%;
+  background: linear-gradient(145deg, #1a002e, #120021);
+}
+
+  .trustpilot-img { 
+    max-width: 300px; 
+    filter: brightness(0.9);
+  }
+
+  .footer { position: fixed; 
+    bottom: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: calc(100% - 40px); 
+    max-width: 520px; 
+    padding: 20px; 
+    background: rgba(15, 15, 30, 0.85); 
+    backdrop-filter: blur(14px); 
+    border-top: 1px solid rgba(0, 255, 174, 0.2); 
+    box-shadow: 0 -10px 40px rgba(0, 255, 174, 0.12); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 8px; 
+    text-align: center; 
+    color: #ffffff; 
+    font-size: 12px; 
+    font-weight: 400; 
+    animation: fadeUp 0.6s ease-out; 
+    border-radius: 20px 20px 0 0; 
+    letter-spacing: 2px; 
+    line-height: 25px; 
+  } 
+  
+  .footer strong { 
+    color: #00ffae; 
+    font-weight: 800; 
+    letter-spacing: 1px; 
+    text-shadow: 0 0 8px rgba(0,255,174,0.8), 0 0 16px rgba(0,255,174,0.6), 0 0 24px rgba(0,255,174,0.4);
+   } 
+   
+   .footer-countdown { 
+    font-size: 12px; 
+    color: #bbbbbb; 
+    letter-spacing: 1px; 
+  } 
+  
+  #countdown { 
+    font-family: monospace; 
+    font-size: 15px; 
+    font-weight: 700; 
+    padding: 10px; /* ❌ quitamos espacio interno */ 
+    border: none; /* ❌ quitamos borde */ 
+    background: none; /* ❌ quitamos fondo */ 
+    box-shadow: none; /* ❌ quitamos contorno */ color: #00ffae; 
+    text-shadow: 0 0 8px rgba(0,255,174,0.9), 0 0 16px rgba(0,255,174,0.6), 0 0 24px rgba(0,255,174,0.4); 
+  } 
+  
+  @keyframes fadeUp { 
+    from { opacity: 0; 
+      transform: translateY(20px); 
+    } to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  }
+
+ /*.notificacion {
+  opacity: 0;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 70px;
+
+  width: calc(100% - 40px);
+  max-width: 360px;
+
+  background: rgba(20, 0, 35, 0.95);
+  color: #00ffae;
+
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  border: 1px solid rgba(0, 255, 174, 0.25);
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  pointer-events: none;
+  
+}
+
+  @keyframes fadeinout {
+  0%,100% { 
+    opacity: 0; 
+    transform: translateX(-50%) translateY(10px);
+  }
+  10%,90% { 
+    opacity: 1; 
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+  .notificacion img { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 8px; 
+    margin-right: 8px; 
+  }
+    */
+  @media (max-width: 600px) {
+    
+    .container {
+    padding: 24px 20px;
+  }
+    
+  
+  .logo-text {
+    font-size: 28px;
+    margin-bottom: 2px;
+    line-height: 1.1;
+  }
+
+  .logo-subtitle {
+    letter-spacing: 4px;
+    font-size: 11px;
+  }
+
+  .verified h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  color: #00ffae;
+  text-shadow: 0 0 12px #00ffaeaa;
+}
+
+.message-badge {
+  font-size: 10px ;
+  padding: 15px 15px;
+}
+
+  .clientes {
+    font-size: 14px;
+  }
+
+  .whatsapp-button {
+    font-size: 15px;        /* 🔥 apenas más chico */
+    padding: 24px 24px;     /* menos padding lateral */
+  }
+
+  .whatsapp-logo {
+    position: relative;
+    right: 10px;            /* un poco más adentro */
+    width: 60px;            /* apenas más chico */
+    height: 60px;
+    animation: icon-wiggle 2s ease-in-out infinite;
+  }
+
+  .b0n0-text {
+  font-size: 18px;
+  position: relative;
+  right: 25px;
+  line-height: 25px;
+}
+  
+  .trustpilot {
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 24px;
+  }
+
+  .trustpilot-img { 
+    max-width: 200px; 
+    filter: brightness(0.9);
+  }
+
+  /*.notificacion {
+    bottom: 100px;
+    font-size: 12px;
+    line-height: 25px;
+  } */
+}
+
+ 
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 6px #00ff00aa, 0 0 12px #00ff00aa; }
+  50% { box-shadow: 0 0 10px #00ff00cc, 0 0 18px #00ff00cc; }
+  100% { box-shadow: 0 0 6px #00ff00aa, 0 0 12px #00ff00aa; }
+}
+
+
+@keyframes soft-bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+
+@keyframes icon-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+</style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <header>
+        
+          <p class="logo-text" aria-hidden="true">
+            <span class="logo-main">G♠NAMOS</span><span class="logo-net">.NET</span>
+          </p>
+          
+      </header>
+       
+  
+      <hr/>
+
+  <section class="verified">
+    <h2>
+      ✅ Plataforma Verificada
+      <img class="tick" src="Verificacion.png" alt="Verificado" />
+    </h2>
+    <!-- <p class="green">💸 Bono Activo: ¡Bonificacion con tu primera carga!</p> -->
+  </section>
+
+  <div class="message-badge">
+    <span class="badge-dot"></span>
+      Respuesta inmediata - ATENCIÓN 24 HS
+  </div>
+
+
+  <!-- BOTÓN CON EVENTO LEAD -->
+  <a class="whatsapp-button" href="javascript:void(0);" onclick="irAWhatsApp()">
+    <img class="whatsapp-logo" src="Icono-whatsapp.png"/>
+    <span class="b0n0-text">¡QUIERO MI B0N0 AHORA!</span>
+</a>
+
+  <!--<div class="mensaje-bono">
+    🎯 ¡Recibí tu BONO DE BIENVENIDA!
+  </div> -->
+
+  <div class="b0n0-destacado">
+  🎁 <strong>+50% EXTRA EN TU PRIMERA C4RGA</strong><br>
+  </div>
+  
+    <section class="clientes">
+      👥 +10.000 CLIENTES G4NANDO todos los días
+    </section>
+
+    <section class="trustpilot">
+      <p>"Excelente" ⭐⭐⭐⭐⭐ Calificación 4.9/5 en Trustpilot</p>
+    <img class= "trustpilot-img" src="Truspilot.png" alt="Calificación 4.9 sobre 5 en Trustpilot" />
+    </section>
+
+    <!-- <aside class="notificacion" id="notificacion" aria-live="polite">
+      <img src="Notificacion.png" alt="" aria-hidden="true"/>
+      <div id="noti-text"></div>
+    </aside> -->
+    </div>
+   </main>
+    
+   <footer class="footer">
+    <div>
+      🎁 <strong>¡B0N0 50% ACTIVO!</strong> 
+    </div>
+
+    <div class="footer-countdown">
+      La oferta expira en <span id="countdown">05:00</span>
+    </div>
+    </footer> 
+
+  
+
+    <!-- <script>
+
+      const noti = document.getElementById("notificacion");
+      const notiText = document.getElementById("noti-text");
+
+      const nombres = [
+      "Mario","Laura","Carlos","Sofía","Pedro","Ana",
+      "Lucía","Javier","Camila","Diego","Valentina","Andrés",
+      "Martina","Lucas","Florencia","Tomás","Julieta","Matías",
+      "Micaela","Bruno","Paula","Franco","Daniela","Santiago"
+      ];
+
+      const ciudades = [
+      "Tucumán","La Plata","Mar del Plata","Neuquén",
+      "Buenos Aires","Córdoba","Rosario","Mendoza","Salta",
+      "San Juan","Santa Fe","Chaco"
+      ];
+      const montos = [
+      "$5.000","$7.500","$8.200","$10.000","$12.500",
+      "$15.000","$18.000","$22.000","$30.000"
+      ];
+
+      let ultimoNombre = "";
+
+      function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function actualizarNotificacion() {
+
+      let nombre;
+
+      // evitar repetir el mismo nombre consecutivamente
+      do {
+      nombre = getRandom(nombres);
+      } while (nombre === ultimoNombre);
+
+      ultimoNombre = nombre;
+
+      const ciudad = getRandom(ciudades);
+      const monto = getRandom(montos);
+
+      const minutos = Math.floor(Math.random() * 5) + 1;
+
+      notiText.innerHTML = `
+      <strong>${nombre}</strong><br />
+      🎁 Reclamó su premio de ${monto}<br />
+      📍 Desde ${ciudad} • hace ${minutos} min
+      `;
+
+      // reiniciar animación
+      noti.style.animation = "none";
+      void noti.offsetWidth;
+      noti.style.animation = "fadeinout 10s";
+      }
+
+      setInterval(actualizarNotificacion, 10000);
+      actualizarNotificacion();
+    </script> -->
+
+    <script>
+      let time = 300;
+      const countdown = document.getElementById("countdown");
+
+      setInterval(() => {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      countdown.textContent = minutes + ":" + seconds;
+
+      if (time <= 0) {
+      time = 300;
+      } else {
+      time--;
+      }
+      }, 1000);
+    </script>
+
+
+    <!-- SCRIPT EVENTO LEAD -->
+  <script>
+    function irAWhatsApp() {
+      try {
+        fbq('track', 'Lead');
+      } catch(e) {}
+      
+      const phone = "5491140388736";
+      
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      const mensaje = encodeURIComponent(
+      "Hola! Quiero reclamar mi b0n0 del 50%");
+
+      if (isMobile) {
+        window.open("https://wa.me/" + phone + "?text=" + mensaje, "_blank");
+      } else {
+        window.open("https://web.whatsapp.com/send?phone=" + phone + "&text=" + mensaje,"_blank");
+      }
+  }
+  </script>
+</body>
+</html>
