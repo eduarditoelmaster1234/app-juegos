@@ -6,6 +6,16 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
+    build: {
+      rollupOptions: {
+        input: {
+          // Landing pública en `/`.
+          main: path.resolve(import.meta.dirname, 'index.html'),
+          // Aplicación React y start_url de la PWA en `/app.html`.
+          app: path.resolve(import.meta.dirname, 'app.html'),
+        },
+      },
+    },
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, '.'),

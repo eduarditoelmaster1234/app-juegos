@@ -49,10 +49,22 @@ function getUserAgent(): string {
 /**
  * Debe llamarse antes de montar React para no perder un
  * `beforeinstallprompt` que llegue durante el arranque.
+ *
+ * La landing pública captura el evento en un script inline temprano y luego
+ * lo entrega acá, para que tampoco se pierda si el módulo carga después.
  */
-export function initializeInstallPromptCapture(): void {
+export function initializeInstallPromptCapture(
+  earlyPrompt: BeforeInstallPromptEvent | null = null,
+  alreadyInstalled = false,
+): void {
   if (captureInitialized || typeof window === 'undefined') return;
   captureInitialized = true;
+
+  if (alreadyInstalled) {
+    appInstalledEvent = true;
+  } else if (earlyPrompt) {
+    deferredPrompt = earlyPrompt;
+  }
 
   window.addEventListener('beforeinstallprompt', (event) => {
     // Evitamos el mini-banner del navegador: la app muestra su propia
