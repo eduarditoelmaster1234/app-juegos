@@ -140,7 +140,7 @@ npm run build
 npm run preview
 ```
 
-- `/` es la **landing pública de instalación** (`index.html` + `src/landing.ts` + `src/landing.css`). Su único objetivo es que el cliente instale la app.
+- `/` es la **landing pública de instalación** (`index.html` + `src/landing.ts` + `src/landing.css`). Reproduce la landing original de GANAMOS (degradado violeta, logotipo `G♠NAMOS.NET`, sello de plataforma verificada, aviso de atención 24 hs, bono, clientes, Trustpilot y pie de oferta) dentro del marco de un teléfono. Su único objetivo es que el cliente instale la app.
 - `/app.html` es la aplicación React y el `start_url` de la PWA.
 - `src/components/PwaAccessGate.tsx` bloquea la aplicación cuando se abre desde un navegador normal y muestra la pantalla de instalación.
 - La detección de "app instalada" usa `display-mode: standalone` (Android y escritorio) y `navigator.standalone` (iOS). Nunca `localStorage`.

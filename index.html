@@ -7,12 +7,12 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#05010a" />
+    <meta name="theme-color" content="#1a0033" />
 
-    <title>GANAMOS — Instalá la app oficial</title>
+    <title>Plataforma Verificada | GANAMOS</title>
     <meta
       name="description"
-      content="Instalá GANAMOS en tu teléfono. La app oficial abre directo a tus juegos, cargas, retiros y soporte."
+      content="Plataforma verificada con atención 24 hs. Instalá GANAMOS en tu teléfono para jugar, cargar y retirar desde la app."
     />
 
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -24,10 +24,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="GANAMOS" />
 
-    <meta property="og:title" content="GANAMOS — Instalá la app oficial" />
+    <meta property="og:title" content="Plataforma Verificada | GANAMOS" />
     <meta
       property="og:description"
-      content="La app no funciona en el navegador. Instalá GANAMOS y abrila desde tu icono."
+      content="Plataforma verificada con atención 24 hs. Instalá GANAMOS y abrila desde tu icono."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/icons/icon-512.png" />
@@ -36,7 +36,7 @@
     <!-- Fondo antes de que cargue el CSS: evita el destello blanco. -->
     <style>
       html {
-        background-color: #05010a;
+        background-color: #0d001a;
       }
     </style>
 
@@ -75,50 +75,50 @@
     <div class="ambient" aria-hidden="true"></div>
 
     <main class="page">
-      <section class="device" aria-labelledby="titulo">
+      <section class="device" aria-label="GANAMOS en tu teléfono">
         <div class="device__inner">
-          <header class="brand">
-            <span class="brand__emblem" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 19h20" />
-                <path d="M4 19l1-12 5 6 4-9 4 9 5-6 1 12H4z" fill="currentColor" fill-opacity="0.25" />
-                <circle cx="5" cy="7" r="1.5" fill="currentColor" />
-                <circle cx="10" cy="13" r="1.5" fill="currentColor" />
-                <circle cx="14" cy="4" r="1.5" fill="currentColor" />
-                <circle cx="18" cy="13" r="1.5" fill="currentColor" />
-                <circle cx="23" cy="7" r="1.5" fill="currentColor" />
-              </svg>
-            </span>
-            <span class="brand__word">GANAMOS</span>
-          </header>
+          <h1 class="logo">
+            <span class="logo__main" aria-hidden="true">G<span class="logo__suit">♠</span>NAMOS</span><span class="logo__net" aria-hidden="true">.NET</span>
+            <span class="sr-only">GANAMOS punto net</span>
+          </h1>
 
-          <p class="seal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l7 3v5.5c0 4.2-2.9 7.9-7 9.5-4.1-1.6-7-5.3-7-9.5V6l7-3z" />
-              <path d="M9 12l2.2 2.2L15.5 10" />
-            </svg>
-            Aplicación oficial
-          </p>
+          <hr class="rule" />
 
-          <h1 class="title" id="titulo">Instalá GANAMOS para entrar</h1>
+          <section class="verified">
+            <h2>
+              <span aria-hidden="true">✅</span>
+              Plataforma Verificada
+              <img
+                class="verified__tick"
+                src="/verificacion.webp"
+                width="96"
+                height="96"
+                alt=""
+                decoding="async"
+              />
+            </h2>
+          </section>
 
-          <p class="lead">
-            La app no funciona en el navegador. Instalala y abrila desde tu icono: juegos,
-            cargas, retiros y soporte, todo adentro.
+          <p class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Respuesta inmediata - ATENCIÓN 24 HS
           </p>
 
           <div class="cta">
-            <button class="install" id="install-button" type="button">
+            <button class="install" id="install-button" type="button" data-state="ready">
               <span class="install__gloss" aria-hidden="true"></span>
-              <svg class="install__icon install__icon--download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="install__icon install__icon--download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 3v12" />
                 <path d="M7 11l5 5 5-5" />
                 <path d="M4 20h16" />
               </svg>
-              <svg class="install__icon install__icon--done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="install__icon install__icon--done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 12.5l5 5L20 6.5" />
               </svg>
-              <span id="install-button-text">Instalar GANAMOS</span>
+              <span class="install__text">
+                <span class="install__label" id="install-button-text">¡QUIERO MI B0N0 AHORA!</span>
+                <span class="install__hint" id="install-button-hint">Instalá GANAMOS para reclamarlo</span>
+              </span>
             </button>
 
             <div
@@ -136,58 +136,31 @@
             </noscript>
           </div>
 
-          <ul class="features">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="8.5" />
-                <path d="M10 8.8l5.2 3.2-5.2 3.2V8.8z" />
-              </svg>
-              <div>
-                <h2>Juegos y casinos</h2>
-                <p>GanamosBet y las plataformas, en un toque.</p>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3.5 8.5h17v9a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-9z" />
-                <path d="M3.5 8.5L7 4.5h10l3.5 4" />
-                <path d="M16.5 13.5h2" />
-              </svg>
-              <div>
-                <h2>Cargas y retiros</h2>
-                <p>Fichas y retiros con el equipo de atención.</p>
-              </div>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20.5 12.5a8.5 8.5 0 1 1-4-7.2" />
-                <path d="M4 20l1.2-4.4" />
-                <path d="M9 11h6M9 14.5h3.5" />
-              </svg>
-              <div>
-                <h2>Soporte en vivo</h2>
-                <p>Chat real desde la app, sin salir.</p>
-              </div>
-            </li>
-          </ul>
+          <p class="bonus">
+            🎁 <strong>+50% EXTRA EN TU PRIMERA C4RGA</strong>
+          </p>
 
-          <footer class="trust">
-            <p class="trust__check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 3l7 3v5.5c0 4.2-2.9 7.9-7 9.5-4.1-1.6-7-5.3-7-9.5V6l7-3z" />
-                <path d="M9 12l2.2 2.2L15.5 10" />
-              </svg>
-              Plataforma verificada
+          <p class="clients">👥 +10.000 CLIENTES G4NANDO todos los días</p>
+
+          <section class="rating" aria-label="Calificación en Trustpilot">
+            <p class="rating__copy">
+              "Excelente" ⭐⭐⭐⭐⭐ Calificación 4.9/5 en Trustpilot
             </p>
             <img
-              class="trust__rating"
+              class="rating__img"
               src="/trustpilot-rating.webp"
               alt="Calificación 4.9 sobre 5 en Trustpilot"
-              width="300"
-              height="200"
-              loading="lazy"
+              width="400"
+              height="186"
               decoding="async"
             />
+          </section>
+
+          <footer class="offer">
+            <p class="offer__title">🎁 <strong>¡B0N0 50% ACTIVO!</strong></p>
+            <p class="offer__countdown">
+              La oferta expira en <span id="countdown">05:00</span>
+            </p>
           </footer>
         </div>
       </section>

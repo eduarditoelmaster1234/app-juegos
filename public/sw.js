@@ -6,16 +6,21 @@
  * - NO intercepta las llamadas a Chatwoot (otro origen): la mensajería y el
  *   WebSocket siempre van a la red, ya que Chatwoot es la fuente de verdad.
  */
-const CACHE_NAME = 'ganamos-app-v4';
+const CACHE_NAME = 'ganamos-app-v5';
 const PAGE_URLS = ['/', '/app.html'];
 const APP_SHELL = [
   '/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/icon-512-maskable.png',
+  '/verificacion.webp',
   '/trustpilot-rating.webp',
 ];
-const STATIC_FILES = new Set(['/manifest.webmanifest', '/trustpilot-rating.webp']);
+const STATIC_FILES = new Set([
+  '/manifest.webmanifest',
+  '/verificacion.webp',
+  '/trustpilot-rating.webp',
+]);
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

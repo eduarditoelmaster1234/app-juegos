@@ -49,6 +49,7 @@ if (isInstalledAppMode()) {
 function initLanding(): void {
   const button = document.querySelector<HTMLButtonElement>('#install-button');
   const label = document.querySelector<HTMLElement>('#install-button-text');
+  const hint = document.querySelector<HTMLElement>('#install-button-hint');
   const help = document.querySelector<HTMLElement>('#install-help');
 
   if (!button || !label || !help) return;
@@ -56,9 +57,29 @@ function initLanding(): void {
   const environment = getInstallEnvironment();
   const automaticInstall = environment === 'chromium';
 
-  const setLabel = (text: string) => {
+  // La landing original usa una sola línea de promoción en el botón. Acá el
+  // texto principal se conserva y una segunda línea aclara la acción real.
+  const setLabel = (text: string, hintText = '') => {
     label.textContent = text;
+    if (!hint) return;
+    hint.textContent = hintText;
+    hint.hidden = hintText.length === 0;
   };
+
+  const initCountdown = () => {
+    const target = document.querySelector<HTMLElement>('#countdown');
+    if (!target) return;
+
+    let remaining = 300;
+    window.setInterval(() => {
+      remaining = remaining <= 0 ? 300 : remaining - 1;
+      const minutes = String(Math.floor(remaining / 60)).padStart(2, '0');
+      const seconds = String(remaining % 60).padStart(2, '0');
+      target.textContent = `${minutes}:${seconds}`;
+    }, 1000);
+  };
+
+  initCountdown();
 
   const setState = (state: 'ready' | 'installed') => {
     button.dataset.state = state;
@@ -122,6 +143,10 @@ function initLanding(): void {
       <p>Abrila desde el icono de tu pantalla de inicio o menú de aplicaciones. Por seguridad, esta pestaña del navegador seguirá bloqueada.</p>`,
   };
 
+  const readyLabel = automaticInstall
+    ? { text: '¡QUIERO MI B0N0 AHORA!', hint: 'Instalá GANAMOS para reclamarlo' }
+    : { text: 'Cómo instalar GANAMOS', hint: 'Te mostramos los pasos' };
+
   const showInstalled = () => {
     setState('installed');
     setLabel('GANAMOS está instalada');
@@ -130,7 +155,7 @@ function initLanding(): void {
   };
 
   setState('ready');
-  setLabel(automaticInstall ? 'Instalar GANAMOS' : 'Cómo instalar GANAMOS');
+  setLabel(readyLabel.text, readyLabel.hint);
 
   if (hasAppInstalledEvent()) showInstalled();
 
@@ -143,7 +168,7 @@ function initLanding(): void {
     if (automaticInstall && getDeferredInstallPrompt()) {
       setState('ready');
       button.disabled = false;
-      setLabel('Instalar GANAMOS');
+      setLabel(readyLabel.text, readyLabel.hint);
       hideHelp();
     }
   });
