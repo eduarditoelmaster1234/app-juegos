@@ -1,3 +1,4 @@
+import './landing.css';
 import type { BeforeInstallPromptEvent } from './lib/pwa/installation';
 import {
   getDeferredInstallPrompt,
@@ -59,6 +60,10 @@ function initLanding(): void {
     label.textContent = text;
   };
 
+  const setState = (state: 'ready' | 'installed') => {
+    button.dataset.state = state;
+  };
+
   const hideHelp = () => {
     help.hidden = true;
     help.innerHTML = '';
@@ -118,12 +123,14 @@ function initLanding(): void {
   };
 
   const showInstalled = () => {
-    setLabel('GANAMOS INSTALADA');
+    setState('installed');
+    setLabel('GANAMOS está instalada');
     button.disabled = true;
     showHelp(helpContent.installed);
   };
 
-  setLabel(automaticInstall ? 'INSTALAR GANAMOS' : 'CÓMO INSTALAR GANAMOS');
+  setState('ready');
+  setLabel(automaticInstall ? 'Instalar GANAMOS' : 'Cómo instalar GANAMOS');
 
   if (hasAppInstalledEvent()) showInstalled();
 
@@ -134,8 +141,9 @@ function initLanding(): void {
     }
 
     if (automaticInstall && getDeferredInstallPrompt()) {
+      setState('ready');
       button.disabled = false;
-      setLabel('INSTALAR GANAMOS');
+      setLabel('Instalar GANAMOS');
       hideHelp();
     }
   });

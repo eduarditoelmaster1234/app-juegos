@@ -11,6 +11,8 @@
   "orientation": "portrait",
   "background_color": "#05010a",
   "theme_color": "#05010a",
+  "categories": ["games", "entertainment"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192.png",

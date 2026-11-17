@@ -140,11 +140,22 @@ npm run build
 npm run preview
 ```
 
+- `/` es la **landing pública de instalación** (`index.html` + `src/landing.ts` + `src/landing.css`). Su único objetivo es que el cliente instale la app.
+- `/app.html` es la aplicación React y el `start_url` de la PWA.
+- `src/components/PwaAccessGate.tsx` bloquea la aplicación cuando se abre desde un navegador normal y muestra la pantalla de instalación.
+- La detección de "app instalada" usa `display-mode: standalone` (Android y escritorio) y `navigator.standalone` (iOS). Nunca `localStorage`.
+- En iPhone, la instalación se hace desde Safari con Compartir → Añadir a pantalla de inicio; no existe una API para forzarla desde un botón.
+
 El manifest está en `public/manifest.webmanifest`, los iconos en
 `public/icons/` y el service worker en `public/sw.js`. El service worker se
 registra solo en producción y nunca cachea las llamadas a Chatwoot (otro
 origen): la mensajería y el WebSocket siempre van a la red. El shell de la app
 queda disponible offline, pero el chat necesita conexión.
+
+Para probar la instalación en local hay que usar `npm run build` +
+`npm run preview` (en `npm run dev` el service worker no se registra y Chrome
+no ofrece instalar).
+
 
 ## Notas
 
